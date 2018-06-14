@@ -1789,19 +1789,19 @@ ActionService_add_petition_term_targets_result.prototype.read = function(input) 
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size336 = 0;
-        var _rtmp3340;
+        var _size344 = 0;
+        var _rtmp3348;
         this.success = [];
-        var _etype339 = 0;
-        _rtmp3340 = input.readListBegin();
-        _etype339 = _rtmp3340.etype;
-        _size336 = _rtmp3340.size;
-        for (var _i341 = 0; _i341 < _size336; ++_i341)
+        var _etype347 = 0;
+        _rtmp3348 = input.readListBegin();
+        _etype347 = _rtmp3348.etype;
+        _size344 = _rtmp3348.size;
+        for (var _i349 = 0; _i349 < _size344; ++_i349)
         {
-          var elem342 = null;
-          elem342 = new ttypes.PetitionTermTarget();
-          elem342.read(input);
-          this.success.push(elem342);
+          var elem350 = null;
+          elem350 = new ttypes.PetitionTermTarget();
+          elem350.read(input);
+          this.success.push(elem350);
         }
         input.readListEnd();
       } else {
@@ -1838,12 +1838,12 @@ ActionService_add_petition_term_targets_result.prototype.write = function(output
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter343 in this.success)
+    for (var iter351 in this.success)
     {
-      if (this.success.hasOwnProperty(iter343))
+      if (this.success.hasOwnProperty(iter351))
       {
-        iter343 = this.success[iter343];
-        iter343.write(output);
+        iter351 = this.success[iter351];
+        iter351.write(output);
       }
     }
     output.writeListEnd();
@@ -1972,19 +1972,19 @@ ActionService_add_petition_candidacy_targets_result.prototype.read = function(in
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size344 = 0;
-        var _rtmp3348;
+        var _size352 = 0;
+        var _rtmp3356;
         this.success = [];
-        var _etype347 = 0;
-        _rtmp3348 = input.readListBegin();
-        _etype347 = _rtmp3348.etype;
-        _size344 = _rtmp3348.size;
-        for (var _i349 = 0; _i349 < _size344; ++_i349)
+        var _etype355 = 0;
+        _rtmp3356 = input.readListBegin();
+        _etype355 = _rtmp3356.etype;
+        _size352 = _rtmp3356.size;
+        for (var _i357 = 0; _i357 < _size352; ++_i357)
         {
-          var elem350 = null;
-          elem350 = new ttypes.PetitionCandidacyTarget();
-          elem350.read(input);
-          this.success.push(elem350);
+          var elem358 = null;
+          elem358 = new ttypes.PetitionCandidacyTarget();
+          elem358.read(input);
+          this.success.push(elem358);
         }
         input.readListEnd();
       } else {
@@ -2021,12 +2021,12 @@ ActionService_add_petition_candidacy_targets_result.prototype.write = function(o
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter351 in this.success)
+    for (var iter359 in this.success)
     {
-      if (this.success.hasOwnProperty(iter351))
+      if (this.success.hasOwnProperty(iter359))
       {
-        iter351 = this.success[iter351];
-        iter351.write(output);
+        iter359 = this.success[iter359];
+        iter359.write(output);
       }
     }
     output.writeListEnd();
@@ -2443,19 +2443,19 @@ ActionService_grade_petition_targets_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size352 = 0;
-        var _rtmp3356;
+        var _size360 = 0;
+        var _rtmp3364;
         this.success = [];
-        var _etype355 = 0;
-        _rtmp3356 = input.readListBegin();
-        _etype355 = _rtmp3356.etype;
-        _size352 = _rtmp3356.size;
-        for (var _i357 = 0; _i357 < _size352; ++_i357)
+        var _etype363 = 0;
+        _rtmp3364 = input.readListBegin();
+        _etype363 = _rtmp3364.etype;
+        _size360 = _rtmp3364.size;
+        for (var _i365 = 0; _i365 < _size360; ++_i365)
         {
-          var elem358 = null;
-          elem358 = new ttypes.PetitionTarget();
-          elem358.read(input);
-          this.success.push(elem358);
+          var elem366 = null;
+          elem366 = new ttypes.PetitionTarget();
+          elem366.read(input);
+          this.success.push(elem366);
         }
         input.readListEnd();
       } else {
@@ -2492,12 +2492,12 @@ ActionService_grade_petition_targets_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter359 in this.success)
+    for (var iter367 in this.success)
     {
-      if (this.success.hasOwnProperty(iter359))
+      if (this.success.hasOwnProperty(iter367))
       {
-        iter359 = this.success[iter359];
-        iter359.write(output);
+        iter367 = this.success[iter367];
+        iter367.write(output);
       }
     }
     output.writeListEnd();
@@ -2898,19 +2898,19 @@ ActionService_get_matching_petition_term_targets_result.prototype.read = functio
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size360 = 0;
-        var _rtmp3364;
+        var _size368 = 0;
+        var _rtmp3372;
         this.success = [];
-        var _etype363 = 0;
-        _rtmp3364 = input.readListBegin();
-        _etype363 = _rtmp3364.etype;
-        _size360 = _rtmp3364.size;
-        for (var _i365 = 0; _i365 < _size360; ++_i365)
+        var _etype371 = 0;
+        _rtmp3372 = input.readListBegin();
+        _etype371 = _rtmp3372.etype;
+        _size368 = _rtmp3372.size;
+        for (var _i373 = 0; _i373 < _size368; ++_i373)
         {
-          var elem366 = null;
-          elem366 = new ttypes.PetitionTermTarget();
-          elem366.read(input);
-          this.success.push(elem366);
+          var elem374 = null;
+          elem374 = new ttypes.PetitionTermTarget();
+          elem374.read(input);
+          this.success.push(elem374);
         }
         input.readListEnd();
       } else {
@@ -2939,12 +2939,12 @@ ActionService_get_matching_petition_term_targets_result.prototype.write = functi
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter367 in this.success)
+    for (var iter375 in this.success)
     {
-      if (this.success.hasOwnProperty(iter367))
+      if (this.success.hasOwnProperty(iter375))
       {
-        iter367 = this.success[iter367];
-        iter367.write(output);
+        iter375 = this.success[iter375];
+        iter375.write(output);
       }
     }
     output.writeListEnd();
@@ -3572,19 +3572,19 @@ ActionService_get_entity_term_petition_grade_counts_result.prototype.read = func
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size368 = 0;
-        var _rtmp3372;
+        var _size376 = 0;
+        var _rtmp3380;
         this.success = [];
-        var _etype371 = 0;
-        _rtmp3372 = input.readListBegin();
-        _etype371 = _rtmp3372.etype;
-        _size368 = _rtmp3372.size;
-        for (var _i373 = 0; _i373 < _size368; ++_i373)
+        var _etype379 = 0;
+        _rtmp3380 = input.readListBegin();
+        _etype379 = _rtmp3380.etype;
+        _size376 = _rtmp3380.size;
+        for (var _i381 = 0; _i381 < _size376; ++_i381)
         {
-          var elem374 = null;
-          elem374 = new ttypes.EntityTermPetitionGradeCount();
-          elem374.read(input);
-          this.success.push(elem374);
+          var elem382 = null;
+          elem382 = new ttypes.EntityTermPetitionGradeCount();
+          elem382.read(input);
+          this.success.push(elem382);
         }
         input.readListEnd();
       } else {
@@ -3621,12 +3621,12 @@ ActionService_get_entity_term_petition_grade_counts_result.prototype.write = fun
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter375 in this.success)
+    for (var iter383 in this.success)
     {
-      if (this.success.hasOwnProperty(iter375))
+      if (this.success.hasOwnProperty(iter383))
       {
-        iter375 = this.success[iter375];
-        iter375.write(output);
+        iter383 = this.success[iter383];
+        iter383.write(output);
       }
     }
     output.writeListEnd();
@@ -3843,18 +3843,18 @@ ActionService_filter_terms_by_entity_actions_result.prototype.read = function(in
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size376 = 0;
-        var _rtmp3380;
+        var _size384 = 0;
+        var _rtmp3388;
         this.success = [];
-        var _etype379 = 0;
-        _rtmp3380 = input.readListBegin();
-        _etype379 = _rtmp3380.etype;
-        _size376 = _rtmp3380.size;
-        for (var _i381 = 0; _i381 < _size376; ++_i381)
+        var _etype387 = 0;
+        _rtmp3388 = input.readListBegin();
+        _etype387 = _rtmp3388.etype;
+        _size384 = _rtmp3388.size;
+        for (var _i389 = 0; _i389 < _size384; ++_i389)
         {
-          var elem382 = null;
-          elem382 = input.readString();
-          this.success.push(elem382);
+          var elem390 = null;
+          elem390 = input.readString();
+          this.success.push(elem390);
         }
         input.readListEnd();
       } else {
@@ -3883,12 +3883,12 @@ ActionService_filter_terms_by_entity_actions_result.prototype.write = function(o
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRING, this.success.length);
-    for (var iter383 in this.success)
+    for (var iter391 in this.success)
     {
-      if (this.success.hasOwnProperty(iter383))
+      if (this.success.hasOwnProperty(iter391))
       {
-        iter383 = this.success[iter383];
-        output.writeString(iter383);
+        iter391 = this.success[iter391];
+        output.writeString(iter391);
       }
     }
     output.writeListEnd();
@@ -4807,6 +4807,328 @@ ActionService_delete_event_result.prototype.write = function(output) {
   if (this.unauthorized_exception !== null && this.unauthorized_exception !== undefined) {
     output.writeFieldBegin('unauthorized_exception', Thrift.Type.STRUCT, 2);
     this.unauthorized_exception.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ActionService_get_event_attendee_uids_args = function(args) {
+  this.headers = null;
+  this.request = null;
+  if (args) {
+    if (args.headers !== undefined && args.headers !== null) {
+      this.headers = new shared_ttypes.RequestHeaders(args.headers);
+    }
+    if (args.request !== undefined && args.request !== null) {
+      this.request = new ttypes.GetEventAttendeeUidsRequest(args.request);
+    }
+  }
+};
+ActionService_get_event_attendee_uids_args.prototype = {};
+ActionService_get_event_attendee_uids_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.headers = new shared_ttypes.RequestHeaders();
+        this.headers.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.request = new ttypes.GetEventAttendeeUidsRequest();
+        this.request.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ActionService_get_event_attendee_uids_args.prototype.write = function(output) {
+  output.writeStructBegin('ActionService_get_event_attendee_uids_args');
+  if (this.headers !== null && this.headers !== undefined) {
+    output.writeFieldBegin('headers', Thrift.Type.STRUCT, 1);
+    this.headers.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.request !== null && this.request !== undefined) {
+    output.writeFieldBegin('request', Thrift.Type.STRUCT, 2);
+    this.request.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ActionService_get_event_attendee_uids_result = function(args) {
+  this.success = null;
+  this.argument_exception = null;
+  this.unauthorized_exception = null;
+  if (args instanceof shared_ttypes.ArgumentException) {
+    this.argument_exception = args;
+    return;
+  }
+  if (args instanceof shared_ttypes.UnauthorizedException) {
+    this.unauthorized_exception = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new ttypes.PaginatedAttendeeUids(args.success);
+    }
+    if (args.argument_exception !== undefined && args.argument_exception !== null) {
+      this.argument_exception = args.argument_exception;
+    }
+    if (args.unauthorized_exception !== undefined && args.unauthorized_exception !== null) {
+      this.unauthorized_exception = args.unauthorized_exception;
+    }
+  }
+};
+ActionService_get_event_attendee_uids_result.prototype = {};
+ActionService_get_event_attendee_uids_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new ttypes.PaginatedAttendeeUids();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.argument_exception = new shared_ttypes.ArgumentException();
+        this.argument_exception.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.unauthorized_exception = new shared_ttypes.UnauthorizedException();
+        this.unauthorized_exception.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ActionService_get_event_attendee_uids_result.prototype.write = function(output) {
+  output.writeStructBegin('ActionService_get_event_attendee_uids_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.argument_exception !== null && this.argument_exception !== undefined) {
+    output.writeFieldBegin('argument_exception', Thrift.Type.STRUCT, 1);
+    this.argument_exception.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.unauthorized_exception !== null && this.unauthorized_exception !== undefined) {
+    output.writeFieldBegin('unauthorized_exception', Thrift.Type.STRUCT, 2);
+    this.unauthorized_exception.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ActionService_attend_event_args = function(args) {
+  this.headers = null;
+  this.request = null;
+  if (args) {
+    if (args.headers !== undefined && args.headers !== null) {
+      this.headers = new shared_ttypes.RequestHeaders(args.headers);
+    }
+    if (args.request !== undefined && args.request !== null) {
+      this.request = new ttypes.AttendEventRequest(args.request);
+    }
+  }
+};
+ActionService_attend_event_args.prototype = {};
+ActionService_attend_event_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.headers = new shared_ttypes.RequestHeaders();
+        this.headers.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.request = new ttypes.AttendEventRequest();
+        this.request.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ActionService_attend_event_args.prototype.write = function(output) {
+  output.writeStructBegin('ActionService_attend_event_args');
+  if (this.headers !== null && this.headers !== undefined) {
+    output.writeFieldBegin('headers', Thrift.Type.STRUCT, 1);
+    this.headers.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.request !== null && this.request !== undefined) {
+    output.writeFieldBegin('request', Thrift.Type.STRUCT, 2);
+    this.request.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var ActionService_attend_event_result = function(args) {
+  this.success = null;
+  this.argument_exception = null;
+  this.state_exception = null;
+  if (args instanceof shared_ttypes.ArgumentException) {
+    this.argument_exception = args;
+    return;
+  }
+  if (args instanceof shared_ttypes.StateException) {
+    this.state_exception = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new ttypes.Event(args.success);
+    }
+    if (args.argument_exception !== undefined && args.argument_exception !== null) {
+      this.argument_exception = args.argument_exception;
+    }
+    if (args.state_exception !== undefined && args.state_exception !== null) {
+      this.state_exception = args.state_exception;
+    }
+  }
+};
+ActionService_attend_event_result.prototype = {};
+ActionService_attend_event_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new ttypes.Event();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.argument_exception = new shared_ttypes.ArgumentException();
+        this.argument_exception.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.state_exception = new shared_ttypes.StateException();
+        this.state_exception.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+ActionService_attend_event_result.prototype.write = function(output) {
+  output.writeStructBegin('ActionService_attend_event_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.argument_exception !== null && this.argument_exception !== undefined) {
+    output.writeFieldBegin('argument_exception', Thrift.Type.STRUCT, 1);
+    this.argument_exception.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.state_exception !== null && this.state_exception !== undefined) {
+    output.writeFieldBegin('state_exception', Thrift.Type.STRUCT, 2);
+    this.state_exception.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -6449,6 +6771,114 @@ ActionServiceClient.prototype.recv_delete_event = function(input,mtype,rseqid) {
   }
   callback(null);
 };
+ActionServiceClient.prototype.get_event_attendee_uids = function(headers, request, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_get_event_attendee_uids(headers, request);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_get_event_attendee_uids(headers, request);
+  }
+};
+
+ActionServiceClient.prototype.send_get_event_attendee_uids = function(headers, request) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('get_event_attendee_uids', Thrift.MessageType.CALL, this.seqid());
+  var args = new ActionService_get_event_attendee_uids_args();
+  args.headers = headers;
+  args.request = request;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+ActionServiceClient.prototype.recv_get_event_attendee_uids = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new ActionService_get_event_attendee_uids_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.argument_exception) {
+    return callback(result.argument_exception);
+  }
+  if (null !== result.unauthorized_exception) {
+    return callback(result.unauthorized_exception);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('get_event_attendee_uids failed: unknown result');
+};
+ActionServiceClient.prototype.attend_event = function(headers, request, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_attend_event(headers, request);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_attend_event(headers, request);
+  }
+};
+
+ActionServiceClient.prototype.send_attend_event = function(headers, request) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('attend_event', Thrift.MessageType.CALL, this.seqid());
+  var args = new ActionService_attend_event_args();
+  args.headers = headers;
+  args.request = request;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+ActionServiceClient.prototype.recv_attend_event = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new ActionService_attend_event_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.argument_exception) {
+    return callback(result.argument_exception);
+  }
+  if (null !== result.state_exception) {
+    return callback(result.state_exception);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('attend_event failed: unknown result');
+};
 var ActionServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler;
 }
@@ -7727,6 +8157,88 @@ ActionServiceProcessor.prototype.process_delete_event = function(seqid, input, o
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("delete_event", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+ActionServiceProcessor.prototype.process_get_event_attendee_uids = function(seqid, input, output) {
+  var args = new ActionService_get_event_attendee_uids_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.get_event_attendee_uids.length === 2) {
+    Q.fcall(this._handler.get_event_attendee_uids, args.headers, args.request)
+      .then(function(result) {
+        var result_obj = new ActionService_get_event_attendee_uids_result({success: result});
+        output.writeMessageBegin("get_event_attendee_uids", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        if (err instanceof shared_ttypes.ArgumentException || err instanceof shared_ttypes.UnauthorizedException) {
+          result = new ActionService_get_event_attendee_uids_result(err);
+          output.writeMessageBegin("get_event_attendee_uids", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("get_event_attendee_uids", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.get_event_attendee_uids(args.headers, args.request, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined') || err instanceof shared_ttypes.ArgumentException || err instanceof shared_ttypes.UnauthorizedException) {
+        result_obj = new ActionService_get_event_attendee_uids_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("get_event_attendee_uids", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("get_event_attendee_uids", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+ActionServiceProcessor.prototype.process_attend_event = function(seqid, input, output) {
+  var args = new ActionService_attend_event_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.attend_event.length === 2) {
+    Q.fcall(this._handler.attend_event, args.headers, args.request)
+      .then(function(result) {
+        var result_obj = new ActionService_attend_event_result({success: result});
+        output.writeMessageBegin("attend_event", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        if (err instanceof shared_ttypes.ArgumentException || err instanceof shared_ttypes.StateException) {
+          result = new ActionService_attend_event_result(err);
+          output.writeMessageBegin("attend_event", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("attend_event", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.attend_event(args.headers, args.request, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined') || err instanceof shared_ttypes.ArgumentException || err instanceof shared_ttypes.StateException) {
+        result_obj = new ActionService_attend_event_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("attend_event", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("attend_event", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

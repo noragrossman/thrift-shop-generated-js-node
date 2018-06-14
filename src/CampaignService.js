@@ -722,18 +722,18 @@ CampaignService_get_petition_uids_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size160 = 0;
-        var _rtmp3164;
+        var _size168 = 0;
+        var _rtmp3172;
         this.success = [];
-        var _etype163 = 0;
-        _rtmp3164 = input.readListBegin();
-        _etype163 = _rtmp3164.etype;
-        _size160 = _rtmp3164.size;
-        for (var _i165 = 0; _i165 < _size160; ++_i165)
+        var _etype171 = 0;
+        _rtmp3172 = input.readListBegin();
+        _etype171 = _rtmp3172.etype;
+        _size168 = _rtmp3172.size;
+        for (var _i173 = 0; _i173 < _size168; ++_i173)
         {
-          var elem166 = null;
-          elem166 = input.readString();
-          this.success.push(elem166);
+          var elem174 = null;
+          elem174 = input.readString();
+          this.success.push(elem174);
         }
         input.readListEnd();
       } else {
@@ -762,12 +762,12 @@ CampaignService_get_petition_uids_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRING, this.success.length);
-    for (var iter167 in this.success)
+    for (var iter175 in this.success)
     {
-      if (this.success.hasOwnProperty(iter167))
+      if (this.success.hasOwnProperty(iter175))
       {
-        iter167 = this.success[iter167];
-        output.writeString(iter167);
+        iter175 = this.success[iter175];
+        output.writeString(iter175);
       }
     }
     output.writeListEnd();
@@ -3182,18 +3182,18 @@ CampaignService_get_ideology_buckets_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size168 = 0;
-        var _rtmp3172;
+        var _size176 = 0;
+        var _rtmp3180;
         this.success = [];
-        var _etype171 = 0;
-        _rtmp3172 = input.readListBegin();
-        _etype171 = _rtmp3172.etype;
-        _size168 = _rtmp3172.size;
-        for (var _i173 = 0; _i173 < _size168; ++_i173)
+        var _etype179 = 0;
+        _rtmp3180 = input.readListBegin();
+        _etype179 = _rtmp3180.etype;
+        _size176 = _rtmp3180.size;
+        for (var _i181 = 0; _i181 < _size176; ++_i181)
         {
-          var elem174 = null;
-          elem174 = input.readI32();
-          this.success.push(elem174);
+          var elem182 = null;
+          elem182 = input.readI32();
+          this.success.push(elem182);
         }
         input.readListEnd();
       } else {
@@ -3222,12 +3222,12 @@ CampaignService_get_ideology_buckets_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.I32, this.success.length);
-    for (var iter175 in this.success)
+    for (var iter183 in this.success)
     {
-      if (this.success.hasOwnProperty(iter175))
+      if (this.success.hasOwnProperty(iter183))
       {
-        iter175 = this.success[iter175];
-        output.writeI32(iter175);
+        iter183 = this.success[iter183];
+        output.writeI32(iter183);
       }
     }
     output.writeListEnd();
@@ -3368,6 +3368,146 @@ CampaignService_get_campaign_supporters_result.prototype.read = function(input) 
 
 CampaignService_get_campaign_supporters_result.prototype.write = function(output) {
   output.writeStructBegin('CampaignService_get_campaign_supporters_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.argument_exception !== null && this.argument_exception !== undefined) {
+    output.writeFieldBegin('argument_exception', Thrift.Type.STRUCT, 1);
+    this.argument_exception.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CampaignService_get_event_uids_args = function(args) {
+  this.headers = null;
+  this.request = null;
+  if (args) {
+    if (args.headers !== undefined && args.headers !== null) {
+      this.headers = new shared_ttypes.RequestHeaders(args.headers);
+    }
+    if (args.request !== undefined && args.request !== null) {
+      this.request = new ttypes.GetEventUidsRequest(args.request);
+    }
+  }
+};
+CampaignService_get_event_uids_args.prototype = {};
+CampaignService_get_event_uids_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.headers = new shared_ttypes.RequestHeaders();
+        this.headers.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.request = new ttypes.GetEventUidsRequest();
+        this.request.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CampaignService_get_event_uids_args.prototype.write = function(output) {
+  output.writeStructBegin('CampaignService_get_event_uids_args');
+  if (this.headers !== null && this.headers !== undefined) {
+    output.writeFieldBegin('headers', Thrift.Type.STRUCT, 1);
+    this.headers.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.request !== null && this.request !== undefined) {
+    output.writeFieldBegin('request', Thrift.Type.STRUCT, 2);
+    this.request.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var CampaignService_get_event_uids_result = function(args) {
+  this.success = null;
+  this.argument_exception = null;
+  if (args instanceof shared_ttypes.ArgumentException) {
+    this.argument_exception = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new ttypes.PaginatedEventUids(args.success);
+    }
+    if (args.argument_exception !== undefined && args.argument_exception !== null) {
+      this.argument_exception = args.argument_exception;
+    }
+  }
+};
+CampaignService_get_event_uids_result.prototype = {};
+CampaignService_get_event_uids_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new ttypes.PaginatedEventUids();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.argument_exception = new shared_ttypes.ArgumentException();
+        this.argument_exception.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+CampaignService_get_event_uids_result.prototype.write = function(output) {
+  output.writeStructBegin('CampaignService_get_event_uids_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
     this.success.write(output);
@@ -4547,6 +4687,57 @@ CampaignServiceClient.prototype.recv_get_campaign_supporters = function(input,mt
   }
   return callback('get_campaign_supporters failed: unknown result');
 };
+CampaignServiceClient.prototype.get_event_uids = function(headers, request, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_get_event_uids(headers, request);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_get_event_uids(headers, request);
+  }
+};
+
+CampaignServiceClient.prototype.send_get_event_uids = function(headers, request) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('get_event_uids', Thrift.MessageType.CALL, this.seqid());
+  var args = new CampaignService_get_event_uids_args();
+  args.headers = headers;
+  args.request = request;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+CampaignServiceClient.prototype.recv_get_event_uids = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new CampaignService_get_event_uids_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.argument_exception) {
+    return callback(result.argument_exception);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('get_event_uids failed: unknown result');
+};
 var CampaignServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler;
 }
@@ -5456,6 +5647,47 @@ CampaignServiceProcessor.prototype.process_get_campaign_supporters = function(se
       } else {
         result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("get_campaign_supporters", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result_obj.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+};
+CampaignServiceProcessor.prototype.process_get_event_uids = function(seqid, input, output) {
+  var args = new CampaignService_get_event_uids_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.get_event_uids.length === 2) {
+    Q.fcall(this._handler.get_event_uids, args.headers, args.request)
+      .then(function(result) {
+        var result_obj = new CampaignService_get_event_uids_result({success: result});
+        output.writeMessageBegin("get_event_uids", Thrift.MessageType.REPLY, seqid);
+        result_obj.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        var result;
+        if (err instanceof shared_ttypes.ArgumentException) {
+          result = new CampaignService_get_event_uids_result(err);
+          output.writeMessageBegin("get_event_uids", Thrift.MessageType.REPLY, seqid);
+        } else {
+          result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("get_event_uids", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.get_event_uids(args.headers, args.request, function (err, result) {
+      var result_obj;
+      if ((err === null || typeof err === 'undefined') || err instanceof shared_ttypes.ArgumentException) {
+        result_obj = new CampaignService_get_event_uids_result((err !== null || typeof err === 'undefined') ? err : {success: result});
+        output.writeMessageBegin("get_event_uids", Thrift.MessageType.REPLY, seqid);
+      } else {
+        result_obj = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("get_event_uids", Thrift.MessageType.EXCEPTION, seqid);
       }
       result_obj.write(output);
       output.writeMessageEnd();

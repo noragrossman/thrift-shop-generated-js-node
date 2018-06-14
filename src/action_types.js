@@ -2837,6 +2837,95 @@ PaginatedEvents.prototype.write = function(output) {
   return;
 };
 
+var PaginatedAttendeeUids = module.exports.PaginatedAttendeeUids = function(args) {
+  this.page_info = null;
+  this.attendee_uids = null;
+  if (args) {
+    if (args.page_info !== undefined && args.page_info !== null) {
+      this.page_info = new shared_ttypes.BoundaryLimitPageInfo(args.page_info);
+    }
+    if (args.attendee_uids !== undefined && args.attendee_uids !== null) {
+      this.attendee_uids = Thrift.copyList(args.attendee_uids, [null]);
+    }
+  }
+};
+PaginatedAttendeeUids.prototype = {};
+PaginatedAttendeeUids.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.page_info = new shared_ttypes.BoundaryLimitPageInfo();
+        this.page_info.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.LIST) {
+        var _size104 = 0;
+        var _rtmp3108;
+        this.attendee_uids = [];
+        var _etype107 = 0;
+        _rtmp3108 = input.readListBegin();
+        _etype107 = _rtmp3108.etype;
+        _size104 = _rtmp3108.size;
+        for (var _i109 = 0; _i109 < _size104; ++_i109)
+        {
+          var elem110 = null;
+          elem110 = input.readString();
+          this.attendee_uids.push(elem110);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+PaginatedAttendeeUids.prototype.write = function(output) {
+  output.writeStructBegin('PaginatedAttendeeUids');
+  if (this.page_info !== null && this.page_info !== undefined) {
+    output.writeFieldBegin('page_info', Thrift.Type.STRUCT, 1);
+    this.page_info.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.attendee_uids !== null && this.attendee_uids !== undefined) {
+    output.writeFieldBegin('attendee_uids', Thrift.Type.LIST, 2);
+    output.writeListBegin(Thrift.Type.STRING, this.attendee_uids.length);
+    for (var iter111 in this.attendee_uids)
+    {
+      if (this.attendee_uids.hasOwnProperty(iter111))
+      {
+        iter111 = this.attendee_uids[iter111];
+        output.writeString(iter111);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var GetEntitySignaturesFilterParams = module.exports.GetEntitySignaturesFilterParams = function(args) {
   this.petition_uids = null;
   this.graded = null;
@@ -2873,18 +2962,18 @@ GetEntitySignaturesFilterParams.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size104 = 0;
-        var _rtmp3108;
+        var _size112 = 0;
+        var _rtmp3116;
         this.petition_uids = [];
-        var _etype107 = 0;
-        _rtmp3108 = input.readListBegin();
-        _etype107 = _rtmp3108.etype;
-        _size104 = _rtmp3108.size;
-        for (var _i109 = 0; _i109 < _size104; ++_i109)
+        var _etype115 = 0;
+        _rtmp3116 = input.readListBegin();
+        _etype115 = _rtmp3116.etype;
+        _size112 = _rtmp3116.size;
+        for (var _i117 = 0; _i117 < _size112; ++_i117)
         {
-          var elem110 = null;
-          elem110 = input.readString();
-          this.petition_uids.push(elem110);
+          var elem118 = null;
+          elem118 = input.readString();
+          this.petition_uids.push(elem118);
         }
         input.readListEnd();
       } else {
@@ -2900,19 +2989,19 @@ GetEntitySignaturesFilterParams.prototype.read = function(input) {
       break;
       case 4:
       if (ftype == Thrift.Type.LIST) {
-        var _size111 = 0;
-        var _rtmp3115;
+        var _size119 = 0;
+        var _rtmp3123;
         this.typed_target_uids = [];
-        var _etype114 = 0;
-        _rtmp3115 = input.readListBegin();
-        _etype114 = _rtmp3115.etype;
-        _size111 = _rtmp3115.size;
-        for (var _i116 = 0; _i116 < _size111; ++_i116)
+        var _etype122 = 0;
+        _rtmp3123 = input.readListBegin();
+        _etype122 = _rtmp3123.etype;
+        _size119 = _rtmp3123.size;
+        for (var _i124 = 0; _i124 < _size119; ++_i124)
         {
-          var elem117 = null;
-          elem117 = new ttypes.PetitionTypedTargetUid();
-          elem117.read(input);
-          this.typed_target_uids.push(elem117);
+          var elem125 = null;
+          elem125 = new ttypes.PetitionTypedTargetUid();
+          elem125.read(input);
+          this.typed_target_uids.push(elem125);
         }
         input.readListEnd();
       } else {
@@ -2921,18 +3010,18 @@ GetEntitySignaturesFilterParams.prototype.read = function(input) {
       break;
       case 3:
       if (ftype == Thrift.Type.LIST) {
-        var _size118 = 0;
-        var _rtmp3122;
+        var _size126 = 0;
+        var _rtmp3130;
         this.term_uids = [];
-        var _etype121 = 0;
-        _rtmp3122 = input.readListBegin();
-        _etype121 = _rtmp3122.etype;
-        _size118 = _rtmp3122.size;
-        for (var _i123 = 0; _i123 < _size118; ++_i123)
+        var _etype129 = 0;
+        _rtmp3130 = input.readListBegin();
+        _etype129 = _rtmp3130.etype;
+        _size126 = _rtmp3130.size;
+        for (var _i131 = 0; _i131 < _size126; ++_i131)
         {
-          var elem124 = null;
-          elem124 = input.readString();
-          this.term_uids.push(elem124);
+          var elem132 = null;
+          elem132 = input.readString();
+          this.term_uids.push(elem132);
         }
         input.readListEnd();
       } else {
@@ -2953,12 +3042,12 @@ GetEntitySignaturesFilterParams.prototype.write = function(output) {
   if (this.petition_uids !== null && this.petition_uids !== undefined) {
     output.writeFieldBegin('petition_uids', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRING, this.petition_uids.length);
-    for (var iter125 in this.petition_uids)
+    for (var iter133 in this.petition_uids)
     {
-      if (this.petition_uids.hasOwnProperty(iter125))
+      if (this.petition_uids.hasOwnProperty(iter133))
       {
-        iter125 = this.petition_uids[iter125];
-        output.writeString(iter125);
+        iter133 = this.petition_uids[iter133];
+        output.writeString(iter133);
       }
     }
     output.writeListEnd();
@@ -2972,12 +3061,12 @@ GetEntitySignaturesFilterParams.prototype.write = function(output) {
   if (this.typed_target_uids !== null && this.typed_target_uids !== undefined) {
     output.writeFieldBegin('typed_target_uids', Thrift.Type.LIST, 4);
     output.writeListBegin(Thrift.Type.STRUCT, this.typed_target_uids.length);
-    for (var iter126 in this.typed_target_uids)
+    for (var iter134 in this.typed_target_uids)
     {
-      if (this.typed_target_uids.hasOwnProperty(iter126))
+      if (this.typed_target_uids.hasOwnProperty(iter134))
       {
-        iter126 = this.typed_target_uids[iter126];
-        iter126.write(output);
+        iter134 = this.typed_target_uids[iter134];
+        iter134.write(output);
       }
     }
     output.writeListEnd();
@@ -2986,12 +3075,12 @@ GetEntitySignaturesFilterParams.prototype.write = function(output) {
   if (this.term_uids !== null && this.term_uids !== undefined) {
     output.writeFieldBegin('term_uids', Thrift.Type.LIST, 3);
     output.writeListBegin(Thrift.Type.STRING, this.term_uids.length);
-    for (var iter127 in this.term_uids)
+    for (var iter135 in this.term_uids)
     {
-      if (this.term_uids.hasOwnProperty(iter127))
+      if (this.term_uids.hasOwnProperty(iter135))
       {
-        iter127 = this.term_uids[iter127];
-        output.writeString(iter127);
+        iter135 = this.term_uids[iter135];
+        output.writeString(iter135);
       }
     }
     output.writeListEnd();
@@ -3046,18 +3135,18 @@ GetPetitionsFilterParams.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size128 = 0;
-        var _rtmp3132;
+        var _size136 = 0;
+        var _rtmp3140;
         this.petition_uids = [];
-        var _etype131 = 0;
-        _rtmp3132 = input.readListBegin();
-        _etype131 = _rtmp3132.etype;
-        _size128 = _rtmp3132.size;
-        for (var _i133 = 0; _i133 < _size128; ++_i133)
+        var _etype139 = 0;
+        _rtmp3140 = input.readListBegin();
+        _etype139 = _rtmp3140.etype;
+        _size136 = _rtmp3140.size;
+        for (var _i141 = 0; _i141 < _size136; ++_i141)
         {
-          var elem134 = null;
-          elem134 = input.readString();
-          this.petition_uids.push(elem134);
+          var elem142 = null;
+          elem142 = input.readString();
+          this.petition_uids.push(elem142);
         }
         input.readListEnd();
       } else {
@@ -3066,18 +3155,18 @@ GetPetitionsFilterParams.prototype.read = function(input) {
       break;
       case 4:
       if (ftype == Thrift.Type.LIST) {
-        var _size135 = 0;
-        var _rtmp3139;
+        var _size143 = 0;
+        var _rtmp3147;
         this.lifecycle_states = [];
-        var _etype138 = 0;
-        _rtmp3139 = input.readListBegin();
-        _etype138 = _rtmp3139.etype;
-        _size135 = _rtmp3139.size;
-        for (var _i140 = 0; _i140 < _size135; ++_i140)
+        var _etype146 = 0;
+        _rtmp3147 = input.readListBegin();
+        _etype146 = _rtmp3147.etype;
+        _size143 = _rtmp3147.size;
+        for (var _i148 = 0; _i148 < _size143; ++_i148)
         {
-          var elem141 = null;
-          elem141 = input.readI32();
-          this.lifecycle_states.push(elem141);
+          var elem149 = null;
+          elem149 = input.readI32();
+          this.lifecycle_states.push(elem149);
         }
         input.readListEnd();
       } else {
@@ -3086,18 +3175,18 @@ GetPetitionsFilterParams.prototype.read = function(input) {
       break;
       case 5:
       if (ftype == Thrift.Type.LIST) {
-        var _size142 = 0;
-        var _rtmp3146;
+        var _size150 = 0;
+        var _rtmp3154;
         this.signed_by_entity_uuids = [];
-        var _etype145 = 0;
-        _rtmp3146 = input.readListBegin();
-        _etype145 = _rtmp3146.etype;
-        _size142 = _rtmp3146.size;
-        for (var _i147 = 0; _i147 < _size142; ++_i147)
+        var _etype153 = 0;
+        _rtmp3154 = input.readListBegin();
+        _etype153 = _rtmp3154.etype;
+        _size150 = _rtmp3154.size;
+        for (var _i155 = 0; _i155 < _size150; ++_i155)
         {
-          var elem148 = null;
-          elem148 = input.readString();
-          this.signed_by_entity_uuids.push(elem148);
+          var elem156 = null;
+          elem156 = input.readString();
+          this.signed_by_entity_uuids.push(elem156);
         }
         input.readListEnd();
       } else {
@@ -3113,19 +3202,19 @@ GetPetitionsFilterParams.prototype.read = function(input) {
       break;
       case 7:
       if (ftype == Thrift.Type.LIST) {
-        var _size149 = 0;
-        var _rtmp3153;
+        var _size157 = 0;
+        var _rtmp3161;
         this.typed_target_uids = [];
-        var _etype152 = 0;
-        _rtmp3153 = input.readListBegin();
-        _etype152 = _rtmp3153.etype;
-        _size149 = _rtmp3153.size;
-        for (var _i154 = 0; _i154 < _size149; ++_i154)
+        var _etype160 = 0;
+        _rtmp3161 = input.readListBegin();
+        _etype160 = _rtmp3161.etype;
+        _size157 = _rtmp3161.size;
+        for (var _i162 = 0; _i162 < _size157; ++_i162)
         {
-          var elem155 = null;
-          elem155 = new ttypes.PetitionTypedTargetUid();
-          elem155.read(input);
-          this.typed_target_uids.push(elem155);
+          var elem163 = null;
+          elem163 = new ttypes.PetitionTypedTargetUid();
+          elem163.read(input);
+          this.typed_target_uids.push(elem163);
         }
         input.readListEnd();
       } else {
@@ -3134,18 +3223,18 @@ GetPetitionsFilterParams.prototype.read = function(input) {
       break;
       case 3:
       if (ftype == Thrift.Type.LIST) {
-        var _size156 = 0;
-        var _rtmp3160;
+        var _size164 = 0;
+        var _rtmp3168;
         this.term_uids = [];
-        var _etype159 = 0;
-        _rtmp3160 = input.readListBegin();
-        _etype159 = _rtmp3160.etype;
-        _size156 = _rtmp3160.size;
-        for (var _i161 = 0; _i161 < _size156; ++_i161)
+        var _etype167 = 0;
+        _rtmp3168 = input.readListBegin();
+        _etype167 = _rtmp3168.etype;
+        _size164 = _rtmp3168.size;
+        for (var _i169 = 0; _i169 < _size164; ++_i169)
         {
-          var elem162 = null;
-          elem162 = input.readString();
-          this.term_uids.push(elem162);
+          var elem170 = null;
+          elem170 = input.readString();
+          this.term_uids.push(elem170);
         }
         input.readListEnd();
       } else {
@@ -3166,12 +3255,12 @@ GetPetitionsFilterParams.prototype.write = function(output) {
   if (this.petition_uids !== null && this.petition_uids !== undefined) {
     output.writeFieldBegin('petition_uids', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRING, this.petition_uids.length);
-    for (var iter163 in this.petition_uids)
+    for (var iter171 in this.petition_uids)
     {
-      if (this.petition_uids.hasOwnProperty(iter163))
+      if (this.petition_uids.hasOwnProperty(iter171))
       {
-        iter163 = this.petition_uids[iter163];
-        output.writeString(iter163);
+        iter171 = this.petition_uids[iter171];
+        output.writeString(iter171);
       }
     }
     output.writeListEnd();
@@ -3180,12 +3269,12 @@ GetPetitionsFilterParams.prototype.write = function(output) {
   if (this.lifecycle_states !== null && this.lifecycle_states !== undefined) {
     output.writeFieldBegin('lifecycle_states', Thrift.Type.LIST, 4);
     output.writeListBegin(Thrift.Type.I32, this.lifecycle_states.length);
-    for (var iter164 in this.lifecycle_states)
+    for (var iter172 in this.lifecycle_states)
     {
-      if (this.lifecycle_states.hasOwnProperty(iter164))
+      if (this.lifecycle_states.hasOwnProperty(iter172))
       {
-        iter164 = this.lifecycle_states[iter164];
-        output.writeI32(iter164);
+        iter172 = this.lifecycle_states[iter172];
+        output.writeI32(iter172);
       }
     }
     output.writeListEnd();
@@ -3194,12 +3283,12 @@ GetPetitionsFilterParams.prototype.write = function(output) {
   if (this.signed_by_entity_uuids !== null && this.signed_by_entity_uuids !== undefined) {
     output.writeFieldBegin('signed_by_entity_uuids', Thrift.Type.LIST, 5);
     output.writeListBegin(Thrift.Type.STRING, this.signed_by_entity_uuids.length);
-    for (var iter165 in this.signed_by_entity_uuids)
+    for (var iter173 in this.signed_by_entity_uuids)
     {
-      if (this.signed_by_entity_uuids.hasOwnProperty(iter165))
+      if (this.signed_by_entity_uuids.hasOwnProperty(iter173))
       {
-        iter165 = this.signed_by_entity_uuids[iter165];
-        output.writeString(iter165);
+        iter173 = this.signed_by_entity_uuids[iter173];
+        output.writeString(iter173);
       }
     }
     output.writeListEnd();
@@ -3213,12 +3302,12 @@ GetPetitionsFilterParams.prototype.write = function(output) {
   if (this.typed_target_uids !== null && this.typed_target_uids !== undefined) {
     output.writeFieldBegin('typed_target_uids', Thrift.Type.LIST, 7);
     output.writeListBegin(Thrift.Type.STRUCT, this.typed_target_uids.length);
-    for (var iter166 in this.typed_target_uids)
+    for (var iter174 in this.typed_target_uids)
     {
-      if (this.typed_target_uids.hasOwnProperty(iter166))
+      if (this.typed_target_uids.hasOwnProperty(iter174))
       {
-        iter166 = this.typed_target_uids[iter166];
-        iter166.write(output);
+        iter174 = this.typed_target_uids[iter174];
+        iter174.write(output);
       }
     }
     output.writeListEnd();
@@ -3227,12 +3316,12 @@ GetPetitionsFilterParams.prototype.write = function(output) {
   if (this.term_uids !== null && this.term_uids !== undefined) {
     output.writeFieldBegin('term_uids', Thrift.Type.LIST, 3);
     output.writeListBegin(Thrift.Type.STRING, this.term_uids.length);
-    for (var iter167 in this.term_uids)
+    for (var iter175 in this.term_uids)
     {
-      if (this.term_uids.hasOwnProperty(iter167))
+      if (this.term_uids.hasOwnProperty(iter175))
       {
-        iter167 = this.term_uids[iter167];
-        output.writeString(iter167);
+        iter175 = this.term_uids[iter175];
+        output.writeString(iter175);
       }
     }
     output.writeListEnd();
@@ -3291,18 +3380,18 @@ GetPetitionTargetsFilterParams.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size168 = 0;
-        var _rtmp3172;
+        var _size176 = 0;
+        var _rtmp3180;
         this.target_types = [];
-        var _etype171 = 0;
-        _rtmp3172 = input.readListBegin();
-        _etype171 = _rtmp3172.etype;
-        _size168 = _rtmp3172.size;
-        for (var _i173 = 0; _i173 < _size168; ++_i173)
+        var _etype179 = 0;
+        _rtmp3180 = input.readListBegin();
+        _etype179 = _rtmp3180.etype;
+        _size176 = _rtmp3180.size;
+        for (var _i181 = 0; _i181 < _size176; ++_i181)
         {
-          var elem174 = null;
-          elem174 = input.readI32();
-          this.target_types.push(elem174);
+          var elem182 = null;
+          elem182 = input.readI32();
+          this.target_types.push(elem182);
         }
         input.readListEnd();
       } else {
@@ -3311,18 +3400,18 @@ GetPetitionTargetsFilterParams.prototype.read = function(input) {
       break;
       case 4:
       if (ftype == Thrift.Type.LIST) {
-        var _size175 = 0;
-        var _rtmp3179;
+        var _size183 = 0;
+        var _rtmp3187;
         this.petition_uids = [];
-        var _etype178 = 0;
-        _rtmp3179 = input.readListBegin();
-        _etype178 = _rtmp3179.etype;
-        _size175 = _rtmp3179.size;
-        for (var _i180 = 0; _i180 < _size175; ++_i180)
+        var _etype186 = 0;
+        _rtmp3187 = input.readListBegin();
+        _etype186 = _rtmp3187.etype;
+        _size183 = _rtmp3187.size;
+        for (var _i188 = 0; _i188 < _size183; ++_i188)
         {
-          var elem181 = null;
-          elem181 = input.readString();
-          this.petition_uids.push(elem181);
+          var elem189 = null;
+          elem189 = input.readString();
+          this.petition_uids.push(elem189);
         }
         input.readListEnd();
       } else {
@@ -3331,18 +3420,18 @@ GetPetitionTargetsFilterParams.prototype.read = function(input) {
       break;
       case 5:
       if (ftype == Thrift.Type.LIST) {
-        var _size182 = 0;
-        var _rtmp3186;
+        var _size190 = 0;
+        var _rtmp3194;
         this.petition_target_uids = [];
-        var _etype185 = 0;
-        _rtmp3186 = input.readListBegin();
-        _etype185 = _rtmp3186.etype;
-        _size182 = _rtmp3186.size;
-        for (var _i187 = 0; _i187 < _size182; ++_i187)
+        var _etype193 = 0;
+        _rtmp3194 = input.readListBegin();
+        _etype193 = _rtmp3194.etype;
+        _size190 = _rtmp3194.size;
+        for (var _i195 = 0; _i195 < _size190; ++_i195)
         {
-          var elem188 = null;
-          elem188 = input.readString();
-          this.petition_target_uids.push(elem188);
+          var elem196 = null;
+          elem196 = input.readString();
+          this.petition_target_uids.push(elem196);
         }
         input.readListEnd();
       } else {
@@ -3351,18 +3440,18 @@ GetPetitionTargetsFilterParams.prototype.read = function(input) {
       break;
       case 6:
       if (ftype == Thrift.Type.LIST) {
-        var _size189 = 0;
-        var _rtmp3193;
+        var _size197 = 0;
+        var _rtmp3201;
         this.district_uids = [];
-        var _etype192 = 0;
-        _rtmp3193 = input.readListBegin();
-        _etype192 = _rtmp3193.etype;
-        _size189 = _rtmp3193.size;
-        for (var _i194 = 0; _i194 < _size189; ++_i194)
+        var _etype200 = 0;
+        _rtmp3201 = input.readListBegin();
+        _etype200 = _rtmp3201.etype;
+        _size197 = _rtmp3201.size;
+        for (var _i202 = 0; _i202 < _size197; ++_i202)
         {
-          var elem195 = null;
-          elem195 = input.readString();
-          this.district_uids.push(elem195);
+          var elem203 = null;
+          elem203 = input.readString();
+          this.district_uids.push(elem203);
         }
         input.readListEnd();
       } else {
@@ -3371,18 +3460,18 @@ GetPetitionTargetsFilterParams.prototype.read = function(input) {
       break;
       case 7:
       if (ftype == Thrift.Type.LIST) {
-        var _size196 = 0;
-        var _rtmp3200;
+        var _size204 = 0;
+        var _rtmp3208;
         this.exclude_district_uids = [];
-        var _etype199 = 0;
-        _rtmp3200 = input.readListBegin();
-        _etype199 = _rtmp3200.etype;
-        _size196 = _rtmp3200.size;
-        for (var _i201 = 0; _i201 < _size196; ++_i201)
+        var _etype207 = 0;
+        _rtmp3208 = input.readListBegin();
+        _etype207 = _rtmp3208.etype;
+        _size204 = _rtmp3208.size;
+        for (var _i209 = 0; _i209 < _size204; ++_i209)
         {
-          var elem202 = null;
-          elem202 = input.readString();
-          this.exclude_district_uids.push(elem202);
+          var elem210 = null;
+          elem210 = input.readString();
+          this.exclude_district_uids.push(elem210);
         }
         input.readListEnd();
       } else {
@@ -3391,18 +3480,18 @@ GetPetitionTargetsFilterParams.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size203 = 0;
-        var _rtmp3207;
+        var _size211 = 0;
+        var _rtmp3215;
         this.exclude_term_uids = [];
-        var _etype206 = 0;
-        _rtmp3207 = input.readListBegin();
-        _etype206 = _rtmp3207.etype;
-        _size203 = _rtmp3207.size;
-        for (var _i208 = 0; _i208 < _size203; ++_i208)
+        var _etype214 = 0;
+        _rtmp3215 = input.readListBegin();
+        _etype214 = _rtmp3215.etype;
+        _size211 = _rtmp3215.size;
+        for (var _i216 = 0; _i216 < _size211; ++_i216)
         {
-          var elem209 = null;
-          elem209 = input.readString();
-          this.exclude_term_uids.push(elem209);
+          var elem217 = null;
+          elem217 = input.readString();
+          this.exclude_term_uids.push(elem217);
         }
         input.readListEnd();
       } else {
@@ -3411,18 +3500,18 @@ GetPetitionTargetsFilterParams.prototype.read = function(input) {
       break;
       case 3:
       if (ftype == Thrift.Type.LIST) {
-        var _size210 = 0;
-        var _rtmp3214;
+        var _size218 = 0;
+        var _rtmp3222;
         this.term_uids = [];
-        var _etype213 = 0;
-        _rtmp3214 = input.readListBegin();
-        _etype213 = _rtmp3214.etype;
-        _size210 = _rtmp3214.size;
-        for (var _i215 = 0; _i215 < _size210; ++_i215)
+        var _etype221 = 0;
+        _rtmp3222 = input.readListBegin();
+        _etype221 = _rtmp3222.etype;
+        _size218 = _rtmp3222.size;
+        for (var _i223 = 0; _i223 < _size218; ++_i223)
         {
-          var elem216 = null;
-          elem216 = input.readString();
-          this.term_uids.push(elem216);
+          var elem224 = null;
+          elem224 = input.readString();
+          this.term_uids.push(elem224);
         }
         input.readListEnd();
       } else {
@@ -3443,12 +3532,12 @@ GetPetitionTargetsFilterParams.prototype.write = function(output) {
   if (this.target_types !== null && this.target_types !== undefined) {
     output.writeFieldBegin('target_types', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.I32, this.target_types.length);
-    for (var iter217 in this.target_types)
+    for (var iter225 in this.target_types)
     {
-      if (this.target_types.hasOwnProperty(iter217))
+      if (this.target_types.hasOwnProperty(iter225))
       {
-        iter217 = this.target_types[iter217];
-        output.writeI32(iter217);
+        iter225 = this.target_types[iter225];
+        output.writeI32(iter225);
       }
     }
     output.writeListEnd();
@@ -3457,12 +3546,12 @@ GetPetitionTargetsFilterParams.prototype.write = function(output) {
   if (this.petition_uids !== null && this.petition_uids !== undefined) {
     output.writeFieldBegin('petition_uids', Thrift.Type.LIST, 4);
     output.writeListBegin(Thrift.Type.STRING, this.petition_uids.length);
-    for (var iter218 in this.petition_uids)
+    for (var iter226 in this.petition_uids)
     {
-      if (this.petition_uids.hasOwnProperty(iter218))
+      if (this.petition_uids.hasOwnProperty(iter226))
       {
-        iter218 = this.petition_uids[iter218];
-        output.writeString(iter218);
+        iter226 = this.petition_uids[iter226];
+        output.writeString(iter226);
       }
     }
     output.writeListEnd();
@@ -3471,12 +3560,12 @@ GetPetitionTargetsFilterParams.prototype.write = function(output) {
   if (this.petition_target_uids !== null && this.petition_target_uids !== undefined) {
     output.writeFieldBegin('petition_target_uids', Thrift.Type.LIST, 5);
     output.writeListBegin(Thrift.Type.STRING, this.petition_target_uids.length);
-    for (var iter219 in this.petition_target_uids)
+    for (var iter227 in this.petition_target_uids)
     {
-      if (this.petition_target_uids.hasOwnProperty(iter219))
+      if (this.petition_target_uids.hasOwnProperty(iter227))
       {
-        iter219 = this.petition_target_uids[iter219];
-        output.writeString(iter219);
+        iter227 = this.petition_target_uids[iter227];
+        output.writeString(iter227);
       }
     }
     output.writeListEnd();
@@ -3485,12 +3574,12 @@ GetPetitionTargetsFilterParams.prototype.write = function(output) {
   if (this.district_uids !== null && this.district_uids !== undefined) {
     output.writeFieldBegin('district_uids', Thrift.Type.LIST, 6);
     output.writeListBegin(Thrift.Type.STRING, this.district_uids.length);
-    for (var iter220 in this.district_uids)
+    for (var iter228 in this.district_uids)
     {
-      if (this.district_uids.hasOwnProperty(iter220))
+      if (this.district_uids.hasOwnProperty(iter228))
       {
-        iter220 = this.district_uids[iter220];
-        output.writeString(iter220);
+        iter228 = this.district_uids[iter228];
+        output.writeString(iter228);
       }
     }
     output.writeListEnd();
@@ -3499,12 +3588,12 @@ GetPetitionTargetsFilterParams.prototype.write = function(output) {
   if (this.exclude_district_uids !== null && this.exclude_district_uids !== undefined) {
     output.writeFieldBegin('exclude_district_uids', Thrift.Type.LIST, 7);
     output.writeListBegin(Thrift.Type.STRING, this.exclude_district_uids.length);
-    for (var iter221 in this.exclude_district_uids)
+    for (var iter229 in this.exclude_district_uids)
     {
-      if (this.exclude_district_uids.hasOwnProperty(iter221))
+      if (this.exclude_district_uids.hasOwnProperty(iter229))
       {
-        iter221 = this.exclude_district_uids[iter221];
-        output.writeString(iter221);
+        iter229 = this.exclude_district_uids[iter229];
+        output.writeString(iter229);
       }
     }
     output.writeListEnd();
@@ -3513,12 +3602,12 @@ GetPetitionTargetsFilterParams.prototype.write = function(output) {
   if (this.exclude_term_uids !== null && this.exclude_term_uids !== undefined) {
     output.writeFieldBegin('exclude_term_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.exclude_term_uids.length);
-    for (var iter222 in this.exclude_term_uids)
+    for (var iter230 in this.exclude_term_uids)
     {
-      if (this.exclude_term_uids.hasOwnProperty(iter222))
+      if (this.exclude_term_uids.hasOwnProperty(iter230))
       {
-        iter222 = this.exclude_term_uids[iter222];
-        output.writeString(iter222);
+        iter230 = this.exclude_term_uids[iter230];
+        output.writeString(iter230);
       }
     }
     output.writeListEnd();
@@ -3527,12 +3616,12 @@ GetPetitionTargetsFilterParams.prototype.write = function(output) {
   if (this.term_uids !== null && this.term_uids !== undefined) {
     output.writeFieldBegin('term_uids', Thrift.Type.LIST, 3);
     output.writeListBegin(Thrift.Type.STRING, this.term_uids.length);
-    for (var iter223 in this.term_uids)
+    for (var iter231 in this.term_uids)
     {
-      if (this.term_uids.hasOwnProperty(iter223))
+      if (this.term_uids.hasOwnProperty(iter231))
       {
-        iter223 = this.term_uids[iter223];
-        output.writeString(iter223);
+        iter231 = this.term_uids[iter231];
+        output.writeString(iter231);
       }
     }
     output.writeListEnd();
@@ -3699,18 +3788,18 @@ PetitionTargetUniqueIdentifiers.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size224 = 0;
-        var _rtmp3228;
+        var _size232 = 0;
+        var _rtmp3236;
         this.uids = [];
-        var _etype227 = 0;
-        _rtmp3228 = input.readListBegin();
-        _etype227 = _rtmp3228.etype;
-        _size224 = _rtmp3228.size;
-        for (var _i229 = 0; _i229 < _size224; ++_i229)
+        var _etype235 = 0;
+        _rtmp3236 = input.readListBegin();
+        _etype235 = _rtmp3236.etype;
+        _size232 = _rtmp3236.size;
+        for (var _i237 = 0; _i237 < _size232; ++_i237)
         {
-          var elem230 = null;
-          elem230 = input.readString();
-          this.uids.push(elem230);
+          var elem238 = null;
+          elem238 = input.readString();
+          this.uids.push(elem238);
         }
         input.readListEnd();
       } else {
@@ -3734,12 +3823,12 @@ PetitionTargetUniqueIdentifiers.prototype.write = function(output) {
   if (this.uids !== null && this.uids !== undefined) {
     output.writeFieldBegin('uids', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRING, this.uids.length);
-    for (var iter231 in this.uids)
+    for (var iter239 in this.uids)
     {
-      if (this.uids.hasOwnProperty(iter231))
+      if (this.uids.hasOwnProperty(iter239))
       {
-        iter231 = this.uids[iter231];
-        output.writeString(iter231);
+        iter239 = this.uids[iter239];
+        output.writeString(iter239);
       }
     }
     output.writeListEnd();
@@ -3785,19 +3874,19 @@ AddPetitionCandidacyTargetsRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size232 = 0;
-        var _rtmp3236;
+        var _size240 = 0;
+        var _rtmp3244;
         this.candidacy_targets = [];
-        var _etype235 = 0;
-        _rtmp3236 = input.readListBegin();
-        _etype235 = _rtmp3236.etype;
-        _size232 = _rtmp3236.size;
-        for (var _i237 = 0; _i237 < _size232; ++_i237)
+        var _etype243 = 0;
+        _rtmp3244 = input.readListBegin();
+        _etype243 = _rtmp3244.etype;
+        _size240 = _rtmp3244.size;
+        for (var _i245 = 0; _i245 < _size240; ++_i245)
         {
-          var elem238 = null;
-          elem238 = new ttypes.AddCandidacyTargetItem();
-          elem238.read(input);
-          this.candidacy_targets.push(elem238);
+          var elem246 = null;
+          elem246 = new ttypes.AddCandidacyTargetItem();
+          elem246.read(input);
+          this.candidacy_targets.push(elem246);
         }
         input.readListEnd();
       } else {
@@ -3823,12 +3912,12 @@ AddPetitionCandidacyTargetsRequest.prototype.write = function(output) {
   if (this.candidacy_targets !== null && this.candidacy_targets !== undefined) {
     output.writeFieldBegin('candidacy_targets', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRUCT, this.candidacy_targets.length);
-    for (var iter239 in this.candidacy_targets)
+    for (var iter247 in this.candidacy_targets)
     {
-      if (this.candidacy_targets.hasOwnProperty(iter239))
+      if (this.candidacy_targets.hasOwnProperty(iter247))
       {
-        iter239 = this.candidacy_targets[iter239];
-        iter239.write(output);
+        iter247 = this.candidacy_targets[iter247];
+        iter247.write(output);
       }
     }
     output.writeListEnd();
@@ -3874,19 +3963,19 @@ AddPetitionTermTargetsRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size240 = 0;
-        var _rtmp3244;
+        var _size248 = 0;
+        var _rtmp3252;
         this.term_targets = [];
-        var _etype243 = 0;
-        _rtmp3244 = input.readListBegin();
-        _etype243 = _rtmp3244.etype;
-        _size240 = _rtmp3244.size;
-        for (var _i245 = 0; _i245 < _size240; ++_i245)
+        var _etype251 = 0;
+        _rtmp3252 = input.readListBegin();
+        _etype251 = _rtmp3252.etype;
+        _size248 = _rtmp3252.size;
+        for (var _i253 = 0; _i253 < _size248; ++_i253)
         {
-          var elem246 = null;
-          elem246 = new ttypes.AddTermTargetItem();
-          elem246.read(input);
-          this.term_targets.push(elem246);
+          var elem254 = null;
+          elem254 = new ttypes.AddTermTargetItem();
+          elem254.read(input);
+          this.term_targets.push(elem254);
         }
         input.readListEnd();
       } else {
@@ -3912,12 +4001,12 @@ AddPetitionTermTargetsRequest.prototype.write = function(output) {
   if (this.term_targets !== null && this.term_targets !== undefined) {
     output.writeFieldBegin('term_targets', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRUCT, this.term_targets.length);
-    for (var iter247 in this.term_targets)
+    for (var iter255 in this.term_targets)
     {
-      if (this.term_targets.hasOwnProperty(iter247))
+      if (this.term_targets.hasOwnProperty(iter255))
       {
-        iter247 = this.term_targets[iter247];
-        iter247.write(output);
+        iter255 = this.term_targets[iter255];
+        iter255.write(output);
       }
     }
     output.writeListEnd();
@@ -4020,18 +4109,18 @@ CreatePetitionSignatureRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size248 = 0;
-        var _rtmp3252;
+        var _size256 = 0;
+        var _rtmp3260;
         this.entity_district_uids = [];
-        var _etype251 = 0;
-        _rtmp3252 = input.readListBegin();
-        _etype251 = _rtmp3252.etype;
-        _size248 = _rtmp3252.size;
-        for (var _i253 = 0; _i253 < _size248; ++_i253)
+        var _etype259 = 0;
+        _rtmp3260 = input.readListBegin();
+        _etype259 = _rtmp3260.etype;
+        _size256 = _rtmp3260.size;
+        for (var _i261 = 0; _i261 < _size256; ++_i261)
         {
-          var elem254 = null;
-          elem254 = input.readString();
-          this.entity_district_uids.push(elem254);
+          var elem262 = null;
+          elem262 = input.readString();
+          this.entity_district_uids.push(elem262);
         }
         input.readListEnd();
       } else {
@@ -4064,12 +4153,12 @@ CreatePetitionSignatureRequest.prototype.write = function(output) {
   if (this.entity_district_uids !== null && this.entity_district_uids !== undefined) {
     output.writeFieldBegin('entity_district_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.entity_district_uids.length);
-    for (var iter255 in this.entity_district_uids)
+    for (var iter263 in this.entity_district_uids)
     {
-      if (this.entity_district_uids.hasOwnProperty(iter255))
+      if (this.entity_district_uids.hasOwnProperty(iter263))
       {
-        iter255 = this.entity_district_uids[iter255];
-        output.writeString(iter255);
+        iter263 = this.entity_district_uids[iter263];
+        output.writeString(iter263);
       }
     }
     output.writeListEnd();
@@ -4716,18 +4805,18 @@ FilterTermsByEntityActionsRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size256 = 0;
-        var _rtmp3260;
+        var _size264 = 0;
+        var _rtmp3268;
         this.term_uids = [];
-        var _etype259 = 0;
-        _rtmp3260 = input.readListBegin();
-        _etype259 = _rtmp3260.etype;
-        _size256 = _rtmp3260.size;
-        for (var _i261 = 0; _i261 < _size256; ++_i261)
+        var _etype267 = 0;
+        _rtmp3268 = input.readListBegin();
+        _etype267 = _rtmp3268.etype;
+        _size264 = _rtmp3268.size;
+        for (var _i269 = 0; _i269 < _size264; ++_i269)
         {
-          var elem262 = null;
-          elem262 = input.readString();
-          this.term_uids.push(elem262);
+          var elem270 = null;
+          elem270 = input.readString();
+          this.term_uids.push(elem270);
         }
         input.readListEnd();
       } else {
@@ -4743,18 +4832,18 @@ FilterTermsByEntityActionsRequest.prototype.read = function(input) {
       break;
       case 4:
       if (ftype == Thrift.Type.LIST) {
-        var _size263 = 0;
-        var _rtmp3267;
+        var _size271 = 0;
+        var _rtmp3275;
         this.petition_uids = [];
-        var _etype266 = 0;
-        _rtmp3267 = input.readListBegin();
-        _etype266 = _rtmp3267.etype;
-        _size263 = _rtmp3267.size;
-        for (var _i268 = 0; _i268 < _size263; ++_i268)
+        var _etype274 = 0;
+        _rtmp3275 = input.readListBegin();
+        _etype274 = _rtmp3275.etype;
+        _size271 = _rtmp3275.size;
+        for (var _i276 = 0; _i276 < _size271; ++_i276)
         {
-          var elem269 = null;
-          elem269 = input.readString();
-          this.petition_uids.push(elem269);
+          var elem277 = null;
+          elem277 = input.readString();
+          this.petition_uids.push(elem277);
         }
         input.readListEnd();
       } else {
@@ -4780,12 +4869,12 @@ FilterTermsByEntityActionsRequest.prototype.write = function(output) {
   if (this.term_uids !== null && this.term_uids !== undefined) {
     output.writeFieldBegin('term_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.term_uids.length);
-    for (var iter270 in this.term_uids)
+    for (var iter278 in this.term_uids)
     {
-      if (this.term_uids.hasOwnProperty(iter270))
+      if (this.term_uids.hasOwnProperty(iter278))
       {
-        iter270 = this.term_uids[iter270];
-        output.writeString(iter270);
+        iter278 = this.term_uids[iter278];
+        output.writeString(iter278);
       }
     }
     output.writeListEnd();
@@ -4799,12 +4888,12 @@ FilterTermsByEntityActionsRequest.prototype.write = function(output) {
   if (this.petition_uids !== null && this.petition_uids !== undefined) {
     output.writeFieldBegin('petition_uids', Thrift.Type.LIST, 4);
     output.writeListBegin(Thrift.Type.STRING, this.petition_uids.length);
-    for (var iter271 in this.petition_uids)
+    for (var iter279 in this.petition_uids)
     {
-      if (this.petition_uids.hasOwnProperty(iter271))
+      if (this.petition_uids.hasOwnProperty(iter279))
       {
-        iter271 = this.petition_uids[iter271];
-        output.writeString(iter271);
+        iter279 = this.petition_uids[iter279];
+        output.writeString(iter279);
       }
     }
     output.writeListEnd();
@@ -4951,18 +5040,18 @@ GetEntityTermPetitionGradeCountsRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size272 = 0;
-        var _rtmp3276;
+        var _size280 = 0;
+        var _rtmp3284;
         this.term_uids = [];
-        var _etype275 = 0;
-        _rtmp3276 = input.readListBegin();
-        _etype275 = _rtmp3276.etype;
-        _size272 = _rtmp3276.size;
-        for (var _i277 = 0; _i277 < _size272; ++_i277)
+        var _etype283 = 0;
+        _rtmp3284 = input.readListBegin();
+        _etype283 = _rtmp3284.etype;
+        _size280 = _rtmp3284.size;
+        for (var _i285 = 0; _i285 < _size280; ++_i285)
         {
-          var elem278 = null;
-          elem278 = input.readString();
-          this.term_uids.push(elem278);
+          var elem286 = null;
+          elem286 = input.readString();
+          this.term_uids.push(elem286);
         }
         input.readListEnd();
       } else {
@@ -4988,12 +5077,12 @@ GetEntityTermPetitionGradeCountsRequest.prototype.write = function(output) {
   if (this.term_uids !== null && this.term_uids !== undefined) {
     output.writeFieldBegin('term_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.term_uids.length);
-    for (var iter279 in this.term_uids)
+    for (var iter287 in this.term_uids)
     {
-      if (this.term_uids.hasOwnProperty(iter279))
+      if (this.term_uids.hasOwnProperty(iter287))
       {
-        iter279 = this.term_uids[iter279];
-        output.writeString(iter279);
+        iter287 = this.term_uids[iter287];
+        output.writeString(iter287);
       }
     }
     output.writeListEnd();
@@ -5039,18 +5128,18 @@ GetMatchingPetitionTermTargetsRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size280 = 0;
-        var _rtmp3284;
+        var _size288 = 0;
+        var _rtmp3292;
         this.term_uids = [];
-        var _etype283 = 0;
-        _rtmp3284 = input.readListBegin();
-        _etype283 = _rtmp3284.etype;
-        _size280 = _rtmp3284.size;
-        for (var _i285 = 0; _i285 < _size280; ++_i285)
+        var _etype291 = 0;
+        _rtmp3292 = input.readListBegin();
+        _etype291 = _rtmp3292.etype;
+        _size288 = _rtmp3292.size;
+        for (var _i293 = 0; _i293 < _size288; ++_i293)
         {
-          var elem286 = null;
-          elem286 = input.readString();
-          this.term_uids.push(elem286);
+          var elem294 = null;
+          elem294 = input.readString();
+          this.term_uids.push(elem294);
         }
         input.readListEnd();
       } else {
@@ -5076,12 +5165,12 @@ GetMatchingPetitionTermTargetsRequest.prototype.write = function(output) {
   if (this.term_uids !== null && this.term_uids !== undefined) {
     output.writeFieldBegin('term_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.term_uids.length);
-    for (var iter287 in this.term_uids)
+    for (var iter295 in this.term_uids)
     {
-      if (this.term_uids.hasOwnProperty(iter287))
+      if (this.term_uids.hasOwnProperty(iter295))
       {
-        iter287 = this.term_uids[iter287];
-        output.writeString(iter287);
+        iter295 = this.term_uids[iter295];
+        output.writeString(iter295);
       }
     }
     output.writeListEnd();
@@ -5116,18 +5205,18 @@ GetPetitionGradeCountsRequest.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size288 = 0;
-        var _rtmp3292;
+        var _size296 = 0;
+        var _rtmp3300;
         this.petition_uids = [];
-        var _etype291 = 0;
-        _rtmp3292 = input.readListBegin();
-        _etype291 = _rtmp3292.etype;
-        _size288 = _rtmp3292.size;
-        for (var _i293 = 0; _i293 < _size288; ++_i293)
+        var _etype299 = 0;
+        _rtmp3300 = input.readListBegin();
+        _etype299 = _rtmp3300.etype;
+        _size296 = _rtmp3300.size;
+        for (var _i301 = 0; _i301 < _size296; ++_i301)
         {
-          var elem294 = null;
-          elem294 = input.readString();
-          this.petition_uids.push(elem294);
+          var elem302 = null;
+          elem302 = input.readString();
+          this.petition_uids.push(elem302);
         }
         input.readListEnd();
       } else {
@@ -5151,12 +5240,12 @@ GetPetitionGradeCountsRequest.prototype.write = function(output) {
   if (this.petition_uids !== null && this.petition_uids !== undefined) {
     output.writeFieldBegin('petition_uids', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRING, this.petition_uids.length);
-    for (var iter295 in this.petition_uids)
+    for (var iter303 in this.petition_uids)
     {
-      if (this.petition_uids.hasOwnProperty(iter295))
+      if (this.petition_uids.hasOwnProperty(iter303))
       {
-        iter295 = this.petition_uids[iter295];
-        output.writeString(iter295);
+        iter303 = this.petition_uids[iter303];
+        output.writeString(iter303);
       }
     }
     output.writeListEnd();
@@ -5245,18 +5334,18 @@ GetPetitionSignatureCountsRequest.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size296 = 0;
-        var _rtmp3300;
+        var _size304 = 0;
+        var _rtmp3308;
         this.petition_uids = [];
-        var _etype299 = 0;
-        _rtmp3300 = input.readListBegin();
-        _etype299 = _rtmp3300.etype;
-        _size296 = _rtmp3300.size;
-        for (var _i301 = 0; _i301 < _size296; ++_i301)
+        var _etype307 = 0;
+        _rtmp3308 = input.readListBegin();
+        _etype307 = _rtmp3308.etype;
+        _size304 = _rtmp3308.size;
+        for (var _i309 = 0; _i309 < _size304; ++_i309)
         {
-          var elem302 = null;
-          elem302 = input.readString();
-          this.petition_uids.push(elem302);
+          var elem310 = null;
+          elem310 = input.readString();
+          this.petition_uids.push(elem310);
         }
         input.readListEnd();
       } else {
@@ -5280,12 +5369,12 @@ GetPetitionSignatureCountsRequest.prototype.write = function(output) {
   if (this.petition_uids !== null && this.petition_uids !== undefined) {
     output.writeFieldBegin('petition_uids', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRING, this.petition_uids.length);
-    for (var iter303 in this.petition_uids)
+    for (var iter311 in this.petition_uids)
     {
-      if (this.petition_uids.hasOwnProperty(iter303))
+      if (this.petition_uids.hasOwnProperty(iter311))
       {
-        iter303 = this.petition_uids[iter303];
-        output.writeString(iter303);
+        iter311 = this.petition_uids[iter311];
+        output.writeString(iter311);
       }
     }
     output.writeListEnd();
@@ -5335,18 +5424,18 @@ GetPetitionSignaturesRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size304 = 0;
-        var _rtmp3308;
+        var _size312 = 0;
+        var _rtmp3316;
         this.entity_uuids = [];
-        var _etype307 = 0;
-        _rtmp3308 = input.readListBegin();
-        _etype307 = _rtmp3308.etype;
-        _size304 = _rtmp3308.size;
-        for (var _i309 = 0; _i309 < _size304; ++_i309)
+        var _etype315 = 0;
+        _rtmp3316 = input.readListBegin();
+        _etype315 = _rtmp3316.etype;
+        _size312 = _rtmp3316.size;
+        for (var _i317 = 0; _i317 < _size312; ++_i317)
         {
-          var elem310 = null;
-          elem310 = input.readString();
-          this.entity_uuids.push(elem310);
+          var elem318 = null;
+          elem318 = input.readString();
+          this.entity_uuids.push(elem318);
         }
         input.readListEnd();
       } else {
@@ -5380,12 +5469,12 @@ GetPetitionSignaturesRequest.prototype.write = function(output) {
   if (this.entity_uuids !== null && this.entity_uuids !== undefined) {
     output.writeFieldBegin('entity_uuids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.entity_uuids.length);
-    for (var iter311 in this.entity_uuids)
+    for (var iter319 in this.entity_uuids)
     {
-      if (this.entity_uuids.hasOwnProperty(iter311))
+      if (this.entity_uuids.hasOwnProperty(iter319))
       {
-        iter311 = this.entity_uuids[iter311];
-        output.writeString(iter311);
+        iter319 = this.entity_uuids[iter319];
+        output.writeString(iter319);
       }
     }
     output.writeListEnd();
@@ -5685,19 +5774,19 @@ GradePetitionTargetsRequest.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size312 = 0;
-        var _rtmp3316;
+        var _size320 = 0;
+        var _rtmp3324;
         this.graded_items = [];
-        var _etype315 = 0;
-        _rtmp3316 = input.readListBegin();
-        _etype315 = _rtmp3316.etype;
-        _size312 = _rtmp3316.size;
-        for (var _i317 = 0; _i317 < _size312; ++_i317)
+        var _etype323 = 0;
+        _rtmp3324 = input.readListBegin();
+        _etype323 = _rtmp3324.etype;
+        _size320 = _rtmp3324.size;
+        for (var _i325 = 0; _i325 < _size320; ++_i325)
         {
-          var elem318 = null;
-          elem318 = new ttypes.GradePetitionTargetsItem();
-          elem318.read(input);
-          this.graded_items.push(elem318);
+          var elem326 = null;
+          elem326 = new ttypes.GradePetitionTargetsItem();
+          elem326.read(input);
+          this.graded_items.push(elem326);
         }
         input.readListEnd();
       } else {
@@ -5721,12 +5810,12 @@ GradePetitionTargetsRequest.prototype.write = function(output) {
   if (this.graded_items !== null && this.graded_items !== undefined) {
     output.writeFieldBegin('graded_items', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRUCT, this.graded_items.length);
-    for (var iter319 in this.graded_items)
+    for (var iter327 in this.graded_items)
     {
-      if (this.graded_items.hasOwnProperty(iter319))
+      if (this.graded_items.hasOwnProperty(iter327))
       {
-        iter319 = this.graded_items[iter319];
-        iter319.write(output);
+        iter327 = this.graded_items[iter327];
+        iter327.write(output);
       }
     }
     output.writeListEnd();
@@ -5772,18 +5861,18 @@ IsPermittedToSignPetitionRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size320 = 0;
-        var _rtmp3324;
+        var _size328 = 0;
+        var _rtmp3332;
         this.entity_district_uids = [];
-        var _etype323 = 0;
-        _rtmp3324 = input.readListBegin();
-        _etype323 = _rtmp3324.etype;
-        _size320 = _rtmp3324.size;
-        for (var _i325 = 0; _i325 < _size320; ++_i325)
+        var _etype331 = 0;
+        _rtmp3332 = input.readListBegin();
+        _etype331 = _rtmp3332.etype;
+        _size328 = _rtmp3332.size;
+        for (var _i333 = 0; _i333 < _size328; ++_i333)
         {
-          var elem326 = null;
-          elem326 = input.readString();
-          this.entity_district_uids.push(elem326);
+          var elem334 = null;
+          elem334 = input.readString();
+          this.entity_district_uids.push(elem334);
         }
         input.readListEnd();
       } else {
@@ -5809,12 +5898,12 @@ IsPermittedToSignPetitionRequest.prototype.write = function(output) {
   if (this.entity_district_uids !== null && this.entity_district_uids !== undefined) {
     output.writeFieldBegin('entity_district_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.entity_district_uids.length);
-    for (var iter327 in this.entity_district_uids)
+    for (var iter335 in this.entity_district_uids)
     {
-      if (this.entity_district_uids.hasOwnProperty(iter327))
+      if (this.entity_district_uids.hasOwnProperty(iter335))
       {
-        iter327 = this.entity_district_uids[iter327];
-        output.writeString(iter327);
+        iter335 = this.entity_district_uids[iter335];
+        output.writeString(iter335);
       }
     }
     output.writeListEnd();
@@ -6172,18 +6261,18 @@ GetEventsFilterParams.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size328 = 0;
-        var _rtmp3332;
+        var _size336 = 0;
+        var _rtmp3340;
         this.campaign_uids = [];
-        var _etype331 = 0;
-        _rtmp3332 = input.readListBegin();
-        _etype331 = _rtmp3332.etype;
-        _size328 = _rtmp3332.size;
-        for (var _i333 = 0; _i333 < _size328; ++_i333)
+        var _etype339 = 0;
+        _rtmp3340 = input.readListBegin();
+        _etype339 = _rtmp3340.etype;
+        _size336 = _rtmp3340.size;
+        for (var _i341 = 0; _i341 < _size336; ++_i341)
         {
-          var elem334 = null;
-          elem334 = input.readString();
-          this.campaign_uids.push(elem334);
+          var elem342 = null;
+          elem342 = input.readString();
+          this.campaign_uids.push(elem342);
         }
         input.readListEnd();
       } else {
@@ -6211,12 +6300,12 @@ GetEventsFilterParams.prototype.write = function(output) {
   if (this.campaign_uids !== null && this.campaign_uids !== undefined) {
     output.writeFieldBegin('campaign_uids', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRING, this.campaign_uids.length);
-    for (var iter335 in this.campaign_uids)
+    for (var iter343 in this.campaign_uids)
     {
-      if (this.campaign_uids.hasOwnProperty(iter335))
+      if (this.campaign_uids.hasOwnProperty(iter343))
       {
-        iter335 = this.campaign_uids[iter335];
-        output.writeString(iter335);
+        iter343 = this.campaign_uids[iter343];
+        output.writeString(iter343);
       }
     }
     output.writeListEnd();
@@ -6521,6 +6610,126 @@ DeleteEventRequest.prototype.read = function(input) {
 
 DeleteEventRequest.prototype.write = function(output) {
   output.writeStructBegin('DeleteEventRequest');
+  if (this.event_uid !== null && this.event_uid !== undefined) {
+    output.writeFieldBegin('event_uid', Thrift.Type.STRING, 1);
+    output.writeString(this.event_uid);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var GetEventAttendeeUidsRequest = module.exports.GetEventAttendeeUidsRequest = function(args) {
+  this.pagination_params = null;
+  this.event_uid = null;
+  if (args) {
+    if (args.pagination_params !== undefined && args.pagination_params !== null) {
+      this.pagination_params = new shared_ttypes.BoundaryLimitPaginationParams(args.pagination_params);
+    }
+    if (args.event_uid !== undefined && args.event_uid !== null) {
+      this.event_uid = args.event_uid;
+    }
+  }
+};
+GetEventAttendeeUidsRequest.prototype = {};
+GetEventAttendeeUidsRequest.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.pagination_params = new shared_ttypes.BoundaryLimitPaginationParams();
+        this.pagination_params.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.event_uid = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+GetEventAttendeeUidsRequest.prototype.write = function(output) {
+  output.writeStructBegin('GetEventAttendeeUidsRequest');
+  if (this.pagination_params !== null && this.pagination_params !== undefined) {
+    output.writeFieldBegin('pagination_params', Thrift.Type.STRUCT, 1);
+    this.pagination_params.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.event_uid !== null && this.event_uid !== undefined) {
+    output.writeFieldBegin('event_uid', Thrift.Type.STRING, 2);
+    output.writeString(this.event_uid);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var AttendEventRequest = module.exports.AttendEventRequest = function(args) {
+  this.event_uid = null;
+  if (args) {
+    if (args.event_uid !== undefined && args.event_uid !== null) {
+      this.event_uid = args.event_uid;
+    }
+  }
+};
+AttendEventRequest.prototype = {};
+AttendEventRequest.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRING) {
+        this.event_uid = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+AttendEventRequest.prototype.write = function(output) {
+  output.writeStructBegin('AttendEventRequest');
   if (this.event_uid !== null && this.event_uid !== undefined) {
     output.writeFieldBegin('event_uid', Thrift.Type.STRING, 1);
     output.writeString(this.event_uid);

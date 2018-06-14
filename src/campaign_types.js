@@ -1234,16 +1234,20 @@ PaginatedCampaignSupporters.prototype.write = function(output) {
   return;
 };
 
-var GetSupportedCampaignUidsFilterParams = module.exports.GetSupportedCampaignUidsFilterParams = function(args) {
-  this.campaign_uids = null;
+var PaginatedEventUids = module.exports.PaginatedEventUids = function(args) {
+  this.page_info = null;
+  this.event_uids = null;
   if (args) {
-    if (args.campaign_uids !== undefined && args.campaign_uids !== null) {
-      this.campaign_uids = Thrift.copyList(args.campaign_uids, [null]);
+    if (args.page_info !== undefined && args.page_info !== null) {
+      this.page_info = new shared_ttypes.BoundaryLimitPageInfo(args.page_info);
+    }
+    if (args.event_uids !== undefined && args.event_uids !== null) {
+      this.event_uids = Thrift.copyList(args.event_uids, [null]);
     }
   }
 };
-GetSupportedCampaignUidsFilterParams.prototype = {};
-GetSupportedCampaignUidsFilterParams.prototype.read = function(input) {
+PaginatedEventUids.prototype = {};
+PaginatedEventUids.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1257,10 +1261,18 @@ GetSupportedCampaignUidsFilterParams.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.page_info = new shared_ttypes.BoundaryLimitPageInfo();
+        this.page_info.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
       if (ftype == Thrift.Type.LIST) {
         var _size72 = 0;
         var _rtmp376;
-        this.campaign_uids = [];
+        this.event_uids = [];
         var _etype75 = 0;
         _rtmp376 = input.readListBegin();
         _etype75 = _rtmp376.etype;
@@ -1269,16 +1281,13 @@ GetSupportedCampaignUidsFilterParams.prototype.read = function(input) {
         {
           var elem78 = null;
           elem78 = input.readString();
-          this.campaign_uids.push(elem78);
+          this.event_uids.push(elem78);
         }
         input.readListEnd();
       } else {
         input.skip(ftype);
       }
       break;
-      case 0:
-        input.skip(ftype);
-        break;
       default:
         input.skip(ftype);
     }
@@ -1288,16 +1297,21 @@ GetSupportedCampaignUidsFilterParams.prototype.read = function(input) {
   return;
 };
 
-GetSupportedCampaignUidsFilterParams.prototype.write = function(output) {
-  output.writeStructBegin('GetSupportedCampaignUidsFilterParams');
-  if (this.campaign_uids !== null && this.campaign_uids !== undefined) {
-    output.writeFieldBegin('campaign_uids', Thrift.Type.LIST, 1);
-    output.writeListBegin(Thrift.Type.STRING, this.campaign_uids.length);
-    for (var iter79 in this.campaign_uids)
+PaginatedEventUids.prototype.write = function(output) {
+  output.writeStructBegin('PaginatedEventUids');
+  if (this.page_info !== null && this.page_info !== undefined) {
+    output.writeFieldBegin('page_info', Thrift.Type.STRUCT, 1);
+    this.page_info.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.event_uids !== null && this.event_uids !== undefined) {
+    output.writeFieldBegin('event_uids', Thrift.Type.LIST, 2);
+    output.writeListBegin(Thrift.Type.STRING, this.event_uids.length);
+    for (var iter79 in this.event_uids)
     {
-      if (this.campaign_uids.hasOwnProperty(iter79))
+      if (this.event_uids.hasOwnProperty(iter79))
       {
-        iter79 = this.campaign_uids[iter79];
+        iter79 = this.event_uids[iter79];
         output.writeString(iter79);
       }
     }
@@ -1309,7 +1323,7 @@ GetSupportedCampaignUidsFilterParams.prototype.write = function(output) {
   return;
 };
 
-var GetCampaignPollsFilterParams = module.exports.GetCampaignPollsFilterParams = function(args) {
+var GetSupportedCampaignUidsFilterParams = module.exports.GetSupportedCampaignUidsFilterParams = function(args) {
   this.campaign_uids = null;
   if (args) {
     if (args.campaign_uids !== undefined && args.campaign_uids !== null) {
@@ -1317,8 +1331,8 @@ var GetCampaignPollsFilterParams = module.exports.GetCampaignPollsFilterParams =
     }
   }
 };
-GetCampaignPollsFilterParams.prototype = {};
-GetCampaignPollsFilterParams.prototype.read = function(input) {
+GetSupportedCampaignUidsFilterParams.prototype = {};
+GetSupportedCampaignUidsFilterParams.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -1363,8 +1377,8 @@ GetCampaignPollsFilterParams.prototype.read = function(input) {
   return;
 };
 
-GetCampaignPollsFilterParams.prototype.write = function(output) {
-  output.writeStructBegin('GetCampaignPollsFilterParams');
+GetSupportedCampaignUidsFilterParams.prototype.write = function(output) {
+  output.writeStructBegin('GetSupportedCampaignUidsFilterParams');
   if (this.campaign_uids !== null && this.campaign_uids !== undefined) {
     output.writeFieldBegin('campaign_uids', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRING, this.campaign_uids.length);
@@ -1374,6 +1388,81 @@ GetCampaignPollsFilterParams.prototype.write = function(output) {
       {
         iter87 = this.campaign_uids[iter87];
         output.writeString(iter87);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var GetCampaignPollsFilterParams = module.exports.GetCampaignPollsFilterParams = function(args) {
+  this.campaign_uids = null;
+  if (args) {
+    if (args.campaign_uids !== undefined && args.campaign_uids !== null) {
+      this.campaign_uids = Thrift.copyList(args.campaign_uids, [null]);
+    }
+  }
+};
+GetCampaignPollsFilterParams.prototype = {};
+GetCampaignPollsFilterParams.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size88 = 0;
+        var _rtmp392;
+        this.campaign_uids = [];
+        var _etype91 = 0;
+        _rtmp392 = input.readListBegin();
+        _etype91 = _rtmp392.etype;
+        _size88 = _rtmp392.size;
+        for (var _i93 = 0; _i93 < _size88; ++_i93)
+        {
+          var elem94 = null;
+          elem94 = input.readString();
+          this.campaign_uids.push(elem94);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+GetCampaignPollsFilterParams.prototype.write = function(output) {
+  output.writeStructBegin('GetCampaignPollsFilterParams');
+  if (this.campaign_uids !== null && this.campaign_uids !== undefined) {
+    output.writeFieldBegin('campaign_uids', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.STRING, this.campaign_uids.length);
+    for (var iter95 in this.campaign_uids)
+    {
+      if (this.campaign_uids.hasOwnProperty(iter95))
+      {
+        iter95 = this.campaign_uids[iter95];
+        output.writeString(iter95);
       }
     }
     output.writeListEnd();
@@ -1419,18 +1508,18 @@ GetCampaignSupportersFilterParams.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size88 = 0;
-        var _rtmp392;
+        var _size96 = 0;
+        var _rtmp3100;
         this.campaign_uids = [];
-        var _etype91 = 0;
-        _rtmp392 = input.readListBegin();
-        _etype91 = _rtmp392.etype;
-        _size88 = _rtmp392.size;
-        for (var _i93 = 0; _i93 < _size88; ++_i93)
+        var _etype99 = 0;
+        _rtmp3100 = input.readListBegin();
+        _etype99 = _rtmp3100.etype;
+        _size96 = _rtmp3100.size;
+        for (var _i101 = 0; _i101 < _size96; ++_i101)
         {
-          var elem94 = null;
-          elem94 = input.readString();
-          this.campaign_uids.push(elem94);
+          var elem102 = null;
+          elem102 = input.readString();
+          this.campaign_uids.push(elem102);
         }
         input.readListEnd();
       } else {
@@ -1456,12 +1545,12 @@ GetCampaignSupportersFilterParams.prototype.write = function(output) {
   if (this.campaign_uids !== null && this.campaign_uids !== undefined) {
     output.writeFieldBegin('campaign_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.campaign_uids.length);
-    for (var iter95 in this.campaign_uids)
+    for (var iter103 in this.campaign_uids)
     {
-      if (this.campaign_uids.hasOwnProperty(iter95))
+      if (this.campaign_uids.hasOwnProperty(iter103))
       {
-        iter95 = this.campaign_uids[iter95];
-        output.writeString(iter95);
+        iter103 = this.campaign_uids[iter103];
+        output.writeString(iter103);
       }
     }
     output.writeListEnd();
@@ -1676,18 +1765,18 @@ CreateCampaignRequest.prototype.read = function(input) {
       break;
       case 6:
       if (ftype == Thrift.Type.LIST) {
-        var _size96 = 0;
-        var _rtmp3100;
+        var _size104 = 0;
+        var _rtmp3108;
         this.topic_uids = [];
-        var _etype99 = 0;
-        _rtmp3100 = input.readListBegin();
-        _etype99 = _rtmp3100.etype;
-        _size96 = _rtmp3100.size;
-        for (var _i101 = 0; _i101 < _size96; ++_i101)
+        var _etype107 = 0;
+        _rtmp3108 = input.readListBegin();
+        _etype107 = _rtmp3108.etype;
+        _size104 = _rtmp3108.size;
+        for (var _i109 = 0; _i109 < _size104; ++_i109)
         {
-          var elem102 = null;
-          elem102 = input.readString();
-          this.topic_uids.push(elem102);
+          var elem110 = null;
+          elem110 = input.readString();
+          this.topic_uids.push(elem110);
         }
         input.readListEnd();
       } else {
@@ -1696,18 +1785,18 @@ CreateCampaignRequest.prototype.read = function(input) {
       break;
       case 8:
       if (ftype == Thrift.Type.LIST) {
-        var _size103 = 0;
-        var _rtmp3107;
+        var _size111 = 0;
+        var _rtmp3115;
         this.ideology_buckets = [];
-        var _etype106 = 0;
-        _rtmp3107 = input.readListBegin();
-        _etype106 = _rtmp3107.etype;
-        _size103 = _rtmp3107.size;
-        for (var _i108 = 0; _i108 < _size103; ++_i108)
+        var _etype114 = 0;
+        _rtmp3115 = input.readListBegin();
+        _etype114 = _rtmp3115.etype;
+        _size111 = _rtmp3115.size;
+        for (var _i116 = 0; _i116 < _size111; ++_i116)
         {
-          var elem109 = null;
-          elem109 = input.readI32();
-          this.ideology_buckets.push(elem109);
+          var elem117 = null;
+          elem117 = input.readI32();
+          this.ideology_buckets.push(elem117);
         }
         input.readListEnd();
       } else {
@@ -1748,12 +1837,12 @@ CreateCampaignRequest.prototype.write = function(output) {
   if (this.topic_uids !== null && this.topic_uids !== undefined) {
     output.writeFieldBegin('topic_uids', Thrift.Type.LIST, 6);
     output.writeListBegin(Thrift.Type.STRING, this.topic_uids.length);
-    for (var iter110 in this.topic_uids)
+    for (var iter118 in this.topic_uids)
     {
-      if (this.topic_uids.hasOwnProperty(iter110))
+      if (this.topic_uids.hasOwnProperty(iter118))
       {
-        iter110 = this.topic_uids[iter110];
-        output.writeString(iter110);
+        iter118 = this.topic_uids[iter118];
+        output.writeString(iter118);
       }
     }
     output.writeListEnd();
@@ -1762,12 +1851,12 @@ CreateCampaignRequest.prototype.write = function(output) {
   if (this.ideology_buckets !== null && this.ideology_buckets !== undefined) {
     output.writeFieldBegin('ideology_buckets', Thrift.Type.LIST, 8);
     output.writeListBegin(Thrift.Type.I32, this.ideology_buckets.length);
-    for (var iter111 in this.ideology_buckets)
+    for (var iter119 in this.ideology_buckets)
     {
-      if (this.ideology_buckets.hasOwnProperty(iter111))
+      if (this.ideology_buckets.hasOwnProperty(iter119))
       {
-        iter111 = this.ideology_buckets[iter111];
-        output.writeI32(iter111);
+        iter119 = this.ideology_buckets[iter119];
+        output.writeI32(iter119);
       }
     }
     output.writeListEnd();
@@ -2290,18 +2379,18 @@ EditCampaignRequest.prototype.read = function(input) {
       break;
       case 6:
       if (ftype == Thrift.Type.LIST) {
-        var _size112 = 0;
-        var _rtmp3116;
+        var _size120 = 0;
+        var _rtmp3124;
         this.topic_uids = [];
-        var _etype115 = 0;
-        _rtmp3116 = input.readListBegin();
-        _etype115 = _rtmp3116.etype;
-        _size112 = _rtmp3116.size;
-        for (var _i117 = 0; _i117 < _size112; ++_i117)
+        var _etype123 = 0;
+        _rtmp3124 = input.readListBegin();
+        _etype123 = _rtmp3124.etype;
+        _size120 = _rtmp3124.size;
+        for (var _i125 = 0; _i125 < _size120; ++_i125)
         {
-          var elem118 = null;
-          elem118 = input.readString();
-          this.topic_uids.push(elem118);
+          var elem126 = null;
+          elem126 = input.readString();
+          this.topic_uids.push(elem126);
         }
         input.readListEnd();
       } else {
@@ -2310,18 +2399,18 @@ EditCampaignRequest.prototype.read = function(input) {
       break;
       case 8:
       if (ftype == Thrift.Type.LIST) {
-        var _size119 = 0;
-        var _rtmp3123;
+        var _size127 = 0;
+        var _rtmp3131;
         this.ideology_buckets = [];
-        var _etype122 = 0;
-        _rtmp3123 = input.readListBegin();
-        _etype122 = _rtmp3123.etype;
-        _size119 = _rtmp3123.size;
-        for (var _i124 = 0; _i124 < _size119; ++_i124)
+        var _etype130 = 0;
+        _rtmp3131 = input.readListBegin();
+        _etype130 = _rtmp3131.etype;
+        _size127 = _rtmp3131.size;
+        for (var _i132 = 0; _i132 < _size127; ++_i132)
         {
-          var elem125 = null;
-          elem125 = input.readI32();
-          this.ideology_buckets.push(elem125);
+          var elem133 = null;
+          elem133 = input.readI32();
+          this.ideology_buckets.push(elem133);
         }
         input.readListEnd();
       } else {
@@ -2367,12 +2456,12 @@ EditCampaignRequest.prototype.write = function(output) {
   if (this.topic_uids !== null && this.topic_uids !== undefined) {
     output.writeFieldBegin('topic_uids', Thrift.Type.LIST, 6);
     output.writeListBegin(Thrift.Type.STRING, this.topic_uids.length);
-    for (var iter126 in this.topic_uids)
+    for (var iter134 in this.topic_uids)
     {
-      if (this.topic_uids.hasOwnProperty(iter126))
+      if (this.topic_uids.hasOwnProperty(iter134))
       {
-        iter126 = this.topic_uids[iter126];
-        output.writeString(iter126);
+        iter134 = this.topic_uids[iter134];
+        output.writeString(iter134);
       }
     }
     output.writeListEnd();
@@ -2381,12 +2470,12 @@ EditCampaignRequest.prototype.write = function(output) {
   if (this.ideology_buckets !== null && this.ideology_buckets !== undefined) {
     output.writeFieldBegin('ideology_buckets', Thrift.Type.LIST, 8);
     output.writeListBegin(Thrift.Type.I32, this.ideology_buckets.length);
-    for (var iter127 in this.ideology_buckets)
+    for (var iter135 in this.ideology_buckets)
     {
-      if (this.ideology_buckets.hasOwnProperty(iter127))
+      if (this.ideology_buckets.hasOwnProperty(iter135))
       {
-        iter127 = this.ideology_buckets[iter127];
-        output.writeI32(iter127);
+        iter135 = this.ideology_buckets[iter135];
+        output.writeI32(iter135);
       }
     }
     output.writeListEnd();
@@ -2660,18 +2749,18 @@ GetCampaignsRequest.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size128 = 0;
-        var _rtmp3132;
+        var _size136 = 0;
+        var _rtmp3140;
         this.campaign_uids = [];
-        var _etype131 = 0;
-        _rtmp3132 = input.readListBegin();
-        _etype131 = _rtmp3132.etype;
-        _size128 = _rtmp3132.size;
-        for (var _i133 = 0; _i133 < _size128; ++_i133)
+        var _etype139 = 0;
+        _rtmp3140 = input.readListBegin();
+        _etype139 = _rtmp3140.etype;
+        _size136 = _rtmp3140.size;
+        for (var _i141 = 0; _i141 < _size136; ++_i141)
         {
-          var elem134 = null;
-          elem134 = input.readString();
-          this.campaign_uids.push(elem134);
+          var elem142 = null;
+          elem142 = input.readString();
+          this.campaign_uids.push(elem142);
         }
         input.readListEnd();
       } else {
@@ -2707,12 +2796,12 @@ GetCampaignsRequest.prototype.write = function(output) {
   if (this.campaign_uids !== null && this.campaign_uids !== undefined) {
     output.writeFieldBegin('campaign_uids', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRING, this.campaign_uids.length);
-    for (var iter135 in this.campaign_uids)
+    for (var iter143 in this.campaign_uids)
     {
-      if (this.campaign_uids.hasOwnProperty(iter135))
+      if (this.campaign_uids.hasOwnProperty(iter143))
       {
-        iter135 = this.campaign_uids[iter135];
-        output.writeString(iter135);
+        iter143 = this.campaign_uids[iter143];
+        output.writeString(iter143);
       }
     }
     output.writeListEnd();
@@ -2772,18 +2861,18 @@ GetCampaignUpdatesRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size136 = 0;
-        var _rtmp3140;
+        var _size144 = 0;
+        var _rtmp3148;
         this.campaign_update_uids = [];
-        var _etype139 = 0;
-        _rtmp3140 = input.readListBegin();
-        _etype139 = _rtmp3140.etype;
-        _size136 = _rtmp3140.size;
-        for (var _i141 = 0; _i141 < _size136; ++_i141)
+        var _etype147 = 0;
+        _rtmp3148 = input.readListBegin();
+        _etype147 = _rtmp3148.etype;
+        _size144 = _rtmp3148.size;
+        for (var _i149 = 0; _i149 < _size144; ++_i149)
         {
-          var elem142 = null;
-          elem142 = input.readString();
-          this.campaign_update_uids.push(elem142);
+          var elem150 = null;
+          elem150 = input.readString();
+          this.campaign_update_uids.push(elem150);
         }
         input.readListEnd();
       } else {
@@ -2817,12 +2906,12 @@ GetCampaignUpdatesRequest.prototype.write = function(output) {
   if (this.campaign_update_uids !== null && this.campaign_update_uids !== undefined) {
     output.writeFieldBegin('campaign_update_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.campaign_update_uids.length);
-    for (var iter143 in this.campaign_update_uids)
+    for (var iter151 in this.campaign_update_uids)
     {
-      if (this.campaign_update_uids.hasOwnProperty(iter143))
+      if (this.campaign_update_uids.hasOwnProperty(iter151))
       {
-        iter143 = this.campaign_update_uids[iter143];
-        output.writeString(iter143);
+        iter151 = this.campaign_update_uids[iter151];
+        output.writeString(iter151);
       }
     }
     output.writeListEnd();
@@ -2862,18 +2951,18 @@ CampaignPollUniqueIdentifiers.prototype.read = function(input) {
     {
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size144 = 0;
-        var _rtmp3148;
+        var _size152 = 0;
+        var _rtmp3156;
         this.campaign_poll_uids = [];
-        var _etype147 = 0;
-        _rtmp3148 = input.readListBegin();
-        _etype147 = _rtmp3148.etype;
-        _size144 = _rtmp3148.size;
-        for (var _i149 = 0; _i149 < _size144; ++_i149)
+        var _etype155 = 0;
+        _rtmp3156 = input.readListBegin();
+        _etype155 = _rtmp3156.etype;
+        _size152 = _rtmp3156.size;
+        for (var _i157 = 0; _i157 < _size152; ++_i157)
         {
-          var elem150 = null;
-          elem150 = input.readString();
-          this.campaign_poll_uids.push(elem150);
+          var elem158 = null;
+          elem158 = input.readString();
+          this.campaign_poll_uids.push(elem158);
         }
         input.readListEnd();
       } else {
@@ -2897,12 +2986,12 @@ CampaignPollUniqueIdentifiers.prototype.write = function(output) {
   if (this.campaign_poll_uids !== null && this.campaign_poll_uids !== undefined) {
     output.writeFieldBegin('campaign_poll_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.campaign_poll_uids.length);
-    for (var iter151 in this.campaign_poll_uids)
+    for (var iter159 in this.campaign_poll_uids)
     {
-      if (this.campaign_poll_uids.hasOwnProperty(iter151))
+      if (this.campaign_poll_uids.hasOwnProperty(iter159))
       {
-        iter151 = this.campaign_poll_uids[iter151];
-        output.writeString(iter151);
+        iter159 = this.campaign_poll_uids[iter159];
+        output.writeString(iter159);
       }
     }
     output.writeListEnd();
@@ -3070,18 +3159,18 @@ GetPetitionUidsRequest.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size152 = 0;
-        var _rtmp3156;
+        var _size160 = 0;
+        var _rtmp3164;
         this.campaign_uids = [];
-        var _etype155 = 0;
-        _rtmp3156 = input.readListBegin();
-        _etype155 = _rtmp3156.etype;
-        _size152 = _rtmp3156.size;
-        for (var _i157 = 0; _i157 < _size152; ++_i157)
+        var _etype163 = 0;
+        _rtmp3164 = input.readListBegin();
+        _etype163 = _rtmp3164.etype;
+        _size160 = _rtmp3164.size;
+        for (var _i165 = 0; _i165 < _size160; ++_i165)
         {
-          var elem158 = null;
-          elem158 = input.readString();
-          this.campaign_uids.push(elem158);
+          var elem166 = null;
+          elem166 = input.readString();
+          this.campaign_uids.push(elem166);
         }
         input.readListEnd();
       } else {
@@ -3107,12 +3196,12 @@ GetPetitionUidsRequest.prototype.write = function(output) {
   if (this.campaign_uids !== null && this.campaign_uids !== undefined) {
     output.writeFieldBegin('campaign_uids', Thrift.Type.LIST, 2);
     output.writeListBegin(Thrift.Type.STRING, this.campaign_uids.length);
-    for (var iter159 in this.campaign_uids)
+    for (var iter167 in this.campaign_uids)
     {
-      if (this.campaign_uids.hasOwnProperty(iter159))
+      if (this.campaign_uids.hasOwnProperty(iter167))
       {
-        iter159 = this.campaign_uids[iter159];
-        output.writeString(iter159);
+        iter167 = this.campaign_uids[iter167];
+        output.writeString(iter167);
       }
     }
     output.writeListEnd();
@@ -3510,6 +3599,73 @@ GetIdeologyBucketsRequest.prototype.write = function(output) {
   output.writeStructBegin('GetIdeologyBucketsRequest');
   if (this.campaign_uid !== null && this.campaign_uid !== undefined) {
     output.writeFieldBegin('campaign_uid', Thrift.Type.STRING, 1);
+    output.writeString(this.campaign_uid);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var GetEventUidsRequest = module.exports.GetEventUidsRequest = function(args) {
+  this.page_info = null;
+  this.campaign_uid = null;
+  if (args) {
+    if (args.page_info !== undefined && args.page_info !== null) {
+      this.page_info = new shared_ttypes.BoundaryLimitPaginationParams(args.page_info);
+    }
+    if (args.campaign_uid !== undefined && args.campaign_uid !== null) {
+      this.campaign_uid = args.campaign_uid;
+    }
+  }
+};
+GetEventUidsRequest.prototype = {};
+GetEventUidsRequest.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.page_info = new shared_ttypes.BoundaryLimitPaginationParams();
+        this.page_info.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.campaign_uid = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+GetEventUidsRequest.prototype.write = function(output) {
+  output.writeStructBegin('GetEventUidsRequest');
+  if (this.page_info !== null && this.page_info !== undefined) {
+    output.writeFieldBegin('page_info', Thrift.Type.STRUCT, 1);
+    this.page_info.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.campaign_uid !== null && this.campaign_uid !== undefined) {
+    output.writeFieldBegin('campaign_uid', Thrift.Type.STRING, 2);
     output.writeString(this.campaign_uid);
     output.writeFieldEnd();
   }
