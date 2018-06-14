@@ -6234,12 +6234,8 @@ GetEventsByIdentifiersRequest.prototype.write = function(output) {
 };
 
 var GetEventsFilterParams = module.exports.GetEventsFilterParams = function(args) {
-  this.campaign_uids = null;
   this.show_only_upcoming = null;
   if (args) {
-    if (args.campaign_uids !== undefined && args.campaign_uids !== null) {
-      this.campaign_uids = Thrift.copyList(args.campaign_uids, [null]);
-    }
     if (args.show_only_upcoming !== undefined && args.show_only_upcoming !== null) {
       this.show_only_upcoming = args.show_only_upcoming;
     }
@@ -6260,32 +6256,15 @@ GetEventsFilterParams.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.LIST) {
-        var _size336 = 0;
-        var _rtmp3340;
-        this.campaign_uids = [];
-        var _etype339 = 0;
-        _rtmp3340 = input.readListBegin();
-        _etype339 = _rtmp3340.etype;
-        _size336 = _rtmp3340.size;
-        for (var _i341 = 0; _i341 < _size336; ++_i341)
-        {
-          var elem342 = null;
-          elem342 = input.readString();
-          this.campaign_uids.push(elem342);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
       if (ftype == Thrift.Type.BOOL) {
         this.show_only_upcoming = input.readBool();
       } else {
         input.skip(ftype);
       }
       break;
+      case 0:
+        input.skip(ftype);
+        break;
       default:
         input.skip(ftype);
     }
@@ -6297,22 +6276,8 @@ GetEventsFilterParams.prototype.read = function(input) {
 
 GetEventsFilterParams.prototype.write = function(output) {
   output.writeStructBegin('GetEventsFilterParams');
-  if (this.campaign_uids !== null && this.campaign_uids !== undefined) {
-    output.writeFieldBegin('campaign_uids', Thrift.Type.LIST, 1);
-    output.writeListBegin(Thrift.Type.STRING, this.campaign_uids.length);
-    for (var iter343 in this.campaign_uids)
-    {
-      if (this.campaign_uids.hasOwnProperty(iter343))
-      {
-        iter343 = this.campaign_uids[iter343];
-        output.writeString(iter343);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
   if (this.show_only_upcoming !== null && this.show_only_upcoming !== undefined) {
-    output.writeFieldBegin('show_only_upcoming', Thrift.Type.BOOL, 2);
+    output.writeFieldBegin('show_only_upcoming', Thrift.Type.BOOL, 1);
     output.writeBool(this.show_only_upcoming);
     output.writeFieldEnd();
   }
