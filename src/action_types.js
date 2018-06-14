@@ -6301,7 +6301,6 @@ GetEventsRequest.prototype.write = function(output) {
 };
 
 var CreateEventRequest = module.exports.CreateEventRequest = function(args) {
-  this.uid = null;
   this.title = null;
   this.start_date = null;
   this.end_date = null;
@@ -6312,9 +6311,6 @@ var CreateEventRequest = module.exports.CreateEventRequest = function(args) {
   this.cost = null;
   this.external_link_url = null;
   if (args) {
-    if (args.uid !== undefined && args.uid !== null) {
-      this.uid = args.uid;
-    }
     if (args.title !== undefined && args.title !== null) {
       this.title = args.title;
     }
@@ -6360,68 +6356,61 @@ CreateEventRequest.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRING) {
-        this.uid = input.readString();
+        this.title = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 2:
       if (ftype == Thrift.Type.STRING) {
-        this.title = input.readString();
+        this.start_date = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 3:
       if (ftype == Thrift.Type.STRING) {
-        this.start_date = input.readString();
+        this.end_date = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 4:
       if (ftype == Thrift.Type.STRING) {
-        this.end_date = input.readString();
+        this.location = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 5:
       if (ftype == Thrift.Type.STRING) {
-        this.location = input.readString();
+        this.description = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 6:
       if (ftype == Thrift.Type.STRING) {
-        this.description = input.readString();
+        this.rich_text_description = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 7:
       if (ftype == Thrift.Type.STRING) {
-        this.rich_text_description = input.readString();
+        this.image = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 8:
       if (ftype == Thrift.Type.STRING) {
-        this.image = input.readString();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 9:
-      if (ftype == Thrift.Type.STRING) {
         this.cost = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
-      case 10:
+      case 9:
       if (ftype == Thrift.Type.STRING) {
         this.external_link_url = input.readString();
       } else {
@@ -6439,53 +6428,48 @@ CreateEventRequest.prototype.read = function(input) {
 
 CreateEventRequest.prototype.write = function(output) {
   output.writeStructBegin('CreateEventRequest');
-  if (this.uid !== null && this.uid !== undefined) {
-    output.writeFieldBegin('uid', Thrift.Type.STRING, 1);
-    output.writeString(this.uid);
-    output.writeFieldEnd();
-  }
   if (this.title !== null && this.title !== undefined) {
-    output.writeFieldBegin('title', Thrift.Type.STRING, 2);
+    output.writeFieldBegin('title', Thrift.Type.STRING, 1);
     output.writeString(this.title);
     output.writeFieldEnd();
   }
   if (this.start_date !== null && this.start_date !== undefined) {
-    output.writeFieldBegin('start_date', Thrift.Type.STRING, 3);
+    output.writeFieldBegin('start_date', Thrift.Type.STRING, 2);
     output.writeString(this.start_date);
     output.writeFieldEnd();
   }
   if (this.end_date !== null && this.end_date !== undefined) {
-    output.writeFieldBegin('end_date', Thrift.Type.STRING, 4);
+    output.writeFieldBegin('end_date', Thrift.Type.STRING, 3);
     output.writeString(this.end_date);
     output.writeFieldEnd();
   }
   if (this.location !== null && this.location !== undefined) {
-    output.writeFieldBegin('location', Thrift.Type.STRING, 5);
+    output.writeFieldBegin('location', Thrift.Type.STRING, 4);
     output.writeString(this.location);
     output.writeFieldEnd();
   }
   if (this.description !== null && this.description !== undefined) {
-    output.writeFieldBegin('description', Thrift.Type.STRING, 6);
+    output.writeFieldBegin('description', Thrift.Type.STRING, 5);
     output.writeString(this.description);
     output.writeFieldEnd();
   }
   if (this.rich_text_description !== null && this.rich_text_description !== undefined) {
-    output.writeFieldBegin('rich_text_description', Thrift.Type.STRING, 7);
+    output.writeFieldBegin('rich_text_description', Thrift.Type.STRING, 6);
     output.writeString(this.rich_text_description);
     output.writeFieldEnd();
   }
   if (this.image !== null && this.image !== undefined) {
-    output.writeFieldBegin('image', Thrift.Type.STRING, 8);
+    output.writeFieldBegin('image', Thrift.Type.STRING, 7);
     output.writeString(this.image);
     output.writeFieldEnd();
   }
   if (this.cost !== null && this.cost !== undefined) {
-    output.writeFieldBegin('cost', Thrift.Type.STRING, 9);
+    output.writeFieldBegin('cost', Thrift.Type.STRING, 8);
     output.writeString(this.cost);
     output.writeFieldEnd();
   }
   if (this.external_link_url !== null && this.external_link_url !== undefined) {
-    output.writeFieldBegin('external_link_url', Thrift.Type.STRING, 10);
+    output.writeFieldBegin('external_link_url', Thrift.Type.STRING, 9);
     output.writeString(this.external_link_url);
     output.writeFieldEnd();
   }
