@@ -6654,9 +6654,13 @@ GetEventAttendeeUidsRequest.prototype.write = function(output) {
 
 var AttendEventRequest = module.exports.AttendEventRequest = function(args) {
   this.event_uid = null;
+  this.entity_uuid = null;
   if (args) {
     if (args.event_uid !== undefined && args.event_uid !== null) {
       this.event_uid = args.event_uid;
+    }
+    if (args.entity_uuid !== undefined && args.entity_uuid !== null) {
+      this.entity_uuid = args.entity_uuid;
     }
   }
 };
@@ -6681,9 +6685,13 @@ AttendEventRequest.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.entity_uuid = input.readString();
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -6698,6 +6706,11 @@ AttendEventRequest.prototype.write = function(output) {
   if (this.event_uid !== null && this.event_uid !== undefined) {
     output.writeFieldBegin('event_uid', Thrift.Type.STRING, 1);
     output.writeString(this.event_uid);
+    output.writeFieldEnd();
+  }
+  if (this.entity_uuid !== null && this.entity_uuid !== undefined) {
+    output.writeFieldBegin('entity_uuid', Thrift.Type.STRING, 2);
+    output.writeString(this.entity_uuid);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
