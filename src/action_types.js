@@ -2458,6 +2458,7 @@ var Event = module.exports.Event = function(args) {
   this.is_approved = null;
   this.cost = null;
   this.external_link_url = null;
+  this.place_id = null;
   if (args) {
     if (args.uid !== undefined && args.uid !== null) {
       this.uid = args.uid;
@@ -2494,6 +2495,9 @@ var Event = module.exports.Event = function(args) {
     }
     if (args.external_link_url !== undefined && args.external_link_url !== null) {
       this.external_link_url = args.external_link_url;
+    }
+    if (args.place_id !== undefined && args.place_id !== null) {
+      this.place_id = args.place_id;
     }
   }
 };
@@ -2595,6 +2599,13 @@ Event.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 13:
+      if (ftype == Thrift.Type.STRING) {
+        this.place_id = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -2664,6 +2675,11 @@ Event.prototype.write = function(output) {
   if (this.external_link_url !== null && this.external_link_url !== undefined) {
     output.writeFieldBegin('external_link_url', Thrift.Type.STRING, 12);
     output.writeString(this.external_link_url);
+    output.writeFieldEnd();
+  }
+  if (this.place_id !== null && this.place_id !== undefined) {
+    output.writeFieldBegin('place_id', Thrift.Type.STRING, 13);
+    output.writeString(this.place_id);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -6235,9 +6251,13 @@ GetEventsByIdentifiersRequest.prototype.write = function(output) {
 
 var GetEventsFilterParams = module.exports.GetEventsFilterParams = function(args) {
   this.show_only_upcoming = null;
+  this.entity_uuid = null;
   if (args) {
     if (args.show_only_upcoming !== undefined && args.show_only_upcoming !== null) {
       this.show_only_upcoming = args.show_only_upcoming;
+    }
+    if (args.entity_uuid !== undefined && args.entity_uuid !== null) {
+      this.entity_uuid = args.entity_uuid;
     }
   }
 };
@@ -6262,9 +6282,13 @@ GetEventsFilterParams.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.entity_uuid = input.readString();
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -6279,6 +6303,11 @@ GetEventsFilterParams.prototype.write = function(output) {
   if (this.show_only_upcoming !== null && this.show_only_upcoming !== undefined) {
     output.writeFieldBegin('show_only_upcoming', Thrift.Type.BOOL, 1);
     output.writeBool(this.show_only_upcoming);
+    output.writeFieldEnd();
+  }
+  if (this.entity_uuid !== null && this.entity_uuid !== undefined) {
+    output.writeFieldBegin('entity_uuid', Thrift.Type.STRING, 2);
+    output.writeString(this.entity_uuid);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -6364,6 +6393,7 @@ var CreateEventRequest = module.exports.CreateEventRequest = function(args) {
   this.image = null;
   this.cost = null;
   this.external_link_url = null;
+  this.place_id = null;
   if (args) {
     if (args.title !== undefined && args.title !== null) {
       this.title = args.title;
@@ -6391,6 +6421,9 @@ var CreateEventRequest = module.exports.CreateEventRequest = function(args) {
     }
     if (args.external_link_url !== undefined && args.external_link_url !== null) {
       this.external_link_url = args.external_link_url;
+    }
+    if (args.place_id !== undefined && args.place_id !== null) {
+      this.place_id = args.place_id;
     }
   }
 };
@@ -6471,6 +6504,13 @@ CreateEventRequest.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 10:
+      if (ftype == Thrift.Type.STRING) {
+        this.place_id = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -6525,6 +6565,11 @@ CreateEventRequest.prototype.write = function(output) {
   if (this.external_link_url !== null && this.external_link_url !== undefined) {
     output.writeFieldBegin('external_link_url', Thrift.Type.STRING, 9);
     output.writeString(this.external_link_url);
+    output.writeFieldEnd();
+  }
+  if (this.place_id !== null && this.place_id !== undefined) {
+    output.writeFieldBegin('place_id', Thrift.Type.STRING, 10);
+    output.writeString(this.place_id);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
