@@ -3608,11 +3608,11 @@ GetIdeologyBucketsRequest.prototype.write = function(output) {
 };
 
 var GetEventUidsRequest = module.exports.GetEventUidsRequest = function(args) {
-  this.page_info = null;
+  this.pagination_params = null;
   this.campaign_uid = null;
   if (args) {
-    if (args.page_info !== undefined && args.page_info !== null) {
-      this.page_info = new shared_ttypes.BoundaryLimitPaginationParams(args.page_info);
+    if (args.pagination_params !== undefined && args.pagination_params !== null) {
+      this.pagination_params = new shared_ttypes.BoundaryLimitPaginationParams(args.pagination_params);
     }
     if (args.campaign_uid !== undefined && args.campaign_uid !== null) {
       this.campaign_uid = args.campaign_uid;
@@ -3635,8 +3635,8 @@ GetEventUidsRequest.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRUCT) {
-        this.page_info = new shared_ttypes.BoundaryLimitPaginationParams();
-        this.page_info.read(input);
+        this.pagination_params = new shared_ttypes.BoundaryLimitPaginationParams();
+        this.pagination_params.read(input);
       } else {
         input.skip(ftype);
       }
@@ -3659,9 +3659,9 @@ GetEventUidsRequest.prototype.read = function(input) {
 
 GetEventUidsRequest.prototype.write = function(output) {
   output.writeStructBegin('GetEventUidsRequest');
-  if (this.page_info !== null && this.page_info !== undefined) {
-    output.writeFieldBegin('page_info', Thrift.Type.STRUCT, 1);
-    this.page_info.write(output);
+  if (this.pagination_params !== null && this.pagination_params !== undefined) {
+    output.writeFieldBegin('pagination_params', Thrift.Type.STRUCT, 1);
+    this.pagination_params.write(output);
     output.writeFieldEnd();
   }
   if (this.campaign_uid !== null && this.campaign_uid !== undefined) {
