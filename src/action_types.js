@@ -3648,6 +3648,125 @@ GetPetitionTargetsFilterParams.prototype.write = function(output) {
   return;
 };
 
+var GetEventsFilterParams = module.exports.GetEventsFilterParams = function(args) {
+  this.show_only_upcoming = null;
+  this.entity_uuid = null;
+  if (args) {
+    if (args.show_only_upcoming !== undefined && args.show_only_upcoming !== null) {
+      this.show_only_upcoming = args.show_only_upcoming;
+    }
+    if (args.entity_uuid !== undefined && args.entity_uuid !== null) {
+      this.entity_uuid = args.entity_uuid;
+    }
+  }
+};
+GetEventsFilterParams.prototype = {};
+GetEventsFilterParams.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.BOOL) {
+        this.show_only_upcoming = input.readBool();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.entity_uuid = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+GetEventsFilterParams.prototype.write = function(output) {
+  output.writeStructBegin('GetEventsFilterParams');
+  if (this.show_only_upcoming !== null && this.show_only_upcoming !== undefined) {
+    output.writeFieldBegin('show_only_upcoming', Thrift.Type.BOOL, 1);
+    output.writeBool(this.show_only_upcoming);
+    output.writeFieldEnd();
+  }
+  if (this.entity_uuid !== null && this.entity_uuid !== undefined) {
+    output.writeFieldBegin('entity_uuid', Thrift.Type.STRING, 2);
+    output.writeString(this.entity_uuid);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+var GetEventsByIdentifiersFilterParams = module.exports.GetEventsByIdentifiersFilterParams = function(args) {
+  this.show_only_upcoming = null;
+  if (args) {
+    if (args.show_only_upcoming !== undefined && args.show_only_upcoming !== null) {
+      this.show_only_upcoming = args.show_only_upcoming;
+    }
+  }
+};
+GetEventsByIdentifiersFilterParams.prototype = {};
+GetEventsByIdentifiersFilterParams.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.BOOL) {
+        this.show_only_upcoming = input.readBool();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+GetEventsByIdentifiersFilterParams.prototype.write = function(output) {
+  output.writeStructBegin('GetEventsByIdentifiersFilterParams');
+  if (this.show_only_upcoming !== null && this.show_only_upcoming !== undefined) {
+    output.writeFieldBegin('show_only_upcoming', Thrift.Type.BOOL, 1);
+    output.writeBool(this.show_only_upcoming);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 var GetEntitySignaturesSortParams = module.exports.GetEntitySignaturesSortParams = function(args) {
   this.sort_field = null;
   this.sort_order = null;
@@ -6197,9 +6316,13 @@ SendGradingNotificationsRequest.prototype.write = function(output) {
 
 var GetEventsByIdentifiersRequest = module.exports.GetEventsByIdentifiersRequest = function(args) {
   this.event_identifiers = null;
+  this.filter_params = null;
   if (args) {
     if (args.event_identifiers !== undefined && args.event_identifiers !== null) {
       this.event_identifiers = new ttypes.EventUniqueIdentifiers(args.event_identifiers);
+    }
+    if (args.filter_params !== undefined && args.filter_params !== null) {
+      this.filter_params = new ttypes.GetEventsByIdentifiersFilterParams(args.filter_params);
     }
   }
 };
@@ -6225,9 +6348,14 @@ GetEventsByIdentifiersRequest.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.filter_params = new ttypes.GetEventsByIdentifiersFilterParams();
+        this.filter_params.read(input);
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -6244,70 +6372,9 @@ GetEventsByIdentifiersRequest.prototype.write = function(output) {
     this.event_identifiers.write(output);
     output.writeFieldEnd();
   }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-var GetEventsFilterParams = module.exports.GetEventsFilterParams = function(args) {
-  this.show_only_upcoming = null;
-  this.entity_uuid = null;
-  if (args) {
-    if (args.show_only_upcoming !== undefined && args.show_only_upcoming !== null) {
-      this.show_only_upcoming = args.show_only_upcoming;
-    }
-    if (args.entity_uuid !== undefined && args.entity_uuid !== null) {
-      this.entity_uuid = args.entity_uuid;
-    }
-  }
-};
-GetEventsFilterParams.prototype = {};
-GetEventsFilterParams.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.BOOL) {
-        this.show_only_upcoming = input.readBool();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRING) {
-        this.entity_uuid = input.readString();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-GetEventsFilterParams.prototype.write = function(output) {
-  output.writeStructBegin('GetEventsFilterParams');
-  if (this.show_only_upcoming !== null && this.show_only_upcoming !== undefined) {
-    output.writeFieldBegin('show_only_upcoming', Thrift.Type.BOOL, 1);
-    output.writeBool(this.show_only_upcoming);
-    output.writeFieldEnd();
-  }
-  if (this.entity_uuid !== null && this.entity_uuid !== undefined) {
-    output.writeFieldBegin('entity_uuid', Thrift.Type.STRING, 2);
-    output.writeString(this.entity_uuid);
+  if (this.filter_params !== null && this.filter_params !== undefined) {
+    output.writeFieldBegin('filter_params', Thrift.Type.STRUCT, 2);
+    this.filter_params.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
