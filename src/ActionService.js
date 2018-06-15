@@ -1789,19 +1789,19 @@ ActionService_add_petition_term_targets_result.prototype.read = function(input) 
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size336 = 0;
-        var _rtmp3340;
+        var _size344 = 0;
+        var _rtmp3348;
         this.success = [];
-        var _etype339 = 0;
-        _rtmp3340 = input.readListBegin();
-        _etype339 = _rtmp3340.etype;
-        _size336 = _rtmp3340.size;
-        for (var _i341 = 0; _i341 < _size336; ++_i341)
+        var _etype347 = 0;
+        _rtmp3348 = input.readListBegin();
+        _etype347 = _rtmp3348.etype;
+        _size344 = _rtmp3348.size;
+        for (var _i349 = 0; _i349 < _size344; ++_i349)
         {
-          var elem342 = null;
-          elem342 = new ttypes.PetitionTermTarget();
-          elem342.read(input);
-          this.success.push(elem342);
+          var elem350 = null;
+          elem350 = new ttypes.PetitionTermTarget();
+          elem350.read(input);
+          this.success.push(elem350);
         }
         input.readListEnd();
       } else {
@@ -1838,12 +1838,12 @@ ActionService_add_petition_term_targets_result.prototype.write = function(output
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter343 in this.success)
+    for (var iter351 in this.success)
     {
-      if (this.success.hasOwnProperty(iter343))
+      if (this.success.hasOwnProperty(iter351))
       {
-        iter343 = this.success[iter343];
-        iter343.write(output);
+        iter351 = this.success[iter351];
+        iter351.write(output);
       }
     }
     output.writeListEnd();
@@ -1972,19 +1972,19 @@ ActionService_add_petition_candidacy_targets_result.prototype.read = function(in
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size344 = 0;
-        var _rtmp3348;
+        var _size352 = 0;
+        var _rtmp3356;
         this.success = [];
-        var _etype347 = 0;
-        _rtmp3348 = input.readListBegin();
-        _etype347 = _rtmp3348.etype;
-        _size344 = _rtmp3348.size;
-        for (var _i349 = 0; _i349 < _size344; ++_i349)
+        var _etype355 = 0;
+        _rtmp3356 = input.readListBegin();
+        _etype355 = _rtmp3356.etype;
+        _size352 = _rtmp3356.size;
+        for (var _i357 = 0; _i357 < _size352; ++_i357)
         {
-          var elem350 = null;
-          elem350 = new ttypes.PetitionCandidacyTarget();
-          elem350.read(input);
-          this.success.push(elem350);
+          var elem358 = null;
+          elem358 = new ttypes.PetitionCandidacyTarget();
+          elem358.read(input);
+          this.success.push(elem358);
         }
         input.readListEnd();
       } else {
@@ -2021,12 +2021,12 @@ ActionService_add_petition_candidacy_targets_result.prototype.write = function(o
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter351 in this.success)
+    for (var iter359 in this.success)
     {
-      if (this.success.hasOwnProperty(iter351))
+      if (this.success.hasOwnProperty(iter359))
       {
-        iter351 = this.success[iter351];
-        iter351.write(output);
+        iter359 = this.success[iter359];
+        iter359.write(output);
       }
     }
     output.writeListEnd();
@@ -2443,19 +2443,19 @@ ActionService_grade_petition_targets_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size352 = 0;
-        var _rtmp3356;
+        var _size360 = 0;
+        var _rtmp3364;
         this.success = [];
-        var _etype355 = 0;
-        _rtmp3356 = input.readListBegin();
-        _etype355 = _rtmp3356.etype;
-        _size352 = _rtmp3356.size;
-        for (var _i357 = 0; _i357 < _size352; ++_i357)
+        var _etype363 = 0;
+        _rtmp3364 = input.readListBegin();
+        _etype363 = _rtmp3364.etype;
+        _size360 = _rtmp3364.size;
+        for (var _i365 = 0; _i365 < _size360; ++_i365)
         {
-          var elem358 = null;
-          elem358 = new ttypes.PetitionTarget();
-          elem358.read(input);
-          this.success.push(elem358);
+          var elem366 = null;
+          elem366 = new ttypes.PetitionTarget();
+          elem366.read(input);
+          this.success.push(elem366);
         }
         input.readListEnd();
       } else {
@@ -2492,12 +2492,12 @@ ActionService_grade_petition_targets_result.prototype.write = function(output) {
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter359 in this.success)
+    for (var iter367 in this.success)
     {
-      if (this.success.hasOwnProperty(iter359))
+      if (this.success.hasOwnProperty(iter367))
       {
-        iter359 = this.success[iter359];
-        iter359.write(output);
+        iter367 = this.success[iter367];
+        iter367.write(output);
       }
     }
     output.writeListEnd();
@@ -2898,19 +2898,19 @@ ActionService_get_matching_petition_term_targets_result.prototype.read = functio
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size360 = 0;
-        var _rtmp3364;
+        var _size368 = 0;
+        var _rtmp3372;
         this.success = [];
-        var _etype363 = 0;
-        _rtmp3364 = input.readListBegin();
-        _etype363 = _rtmp3364.etype;
-        _size360 = _rtmp3364.size;
-        for (var _i365 = 0; _i365 < _size360; ++_i365)
+        var _etype371 = 0;
+        _rtmp3372 = input.readListBegin();
+        _etype371 = _rtmp3372.etype;
+        _size368 = _rtmp3372.size;
+        for (var _i373 = 0; _i373 < _size368; ++_i373)
         {
-          var elem366 = null;
-          elem366 = new ttypes.PetitionTermTarget();
-          elem366.read(input);
-          this.success.push(elem366);
+          var elem374 = null;
+          elem374 = new ttypes.PetitionTermTarget();
+          elem374.read(input);
+          this.success.push(elem374);
         }
         input.readListEnd();
       } else {
@@ -2939,12 +2939,12 @@ ActionService_get_matching_petition_term_targets_result.prototype.write = functi
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter367 in this.success)
+    for (var iter375 in this.success)
     {
-      if (this.success.hasOwnProperty(iter367))
+      if (this.success.hasOwnProperty(iter375))
       {
-        iter367 = this.success[iter367];
-        iter367.write(output);
+        iter375 = this.success[iter375];
+        iter375.write(output);
       }
     }
     output.writeListEnd();
@@ -3572,19 +3572,19 @@ ActionService_get_entity_term_petition_grade_counts_result.prototype.read = func
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size368 = 0;
-        var _rtmp3372;
+        var _size376 = 0;
+        var _rtmp3380;
         this.success = [];
-        var _etype371 = 0;
-        _rtmp3372 = input.readListBegin();
-        _etype371 = _rtmp3372.etype;
-        _size368 = _rtmp3372.size;
-        for (var _i373 = 0; _i373 < _size368; ++_i373)
+        var _etype379 = 0;
+        _rtmp3380 = input.readListBegin();
+        _etype379 = _rtmp3380.etype;
+        _size376 = _rtmp3380.size;
+        for (var _i381 = 0; _i381 < _size376; ++_i381)
         {
-          var elem374 = null;
-          elem374 = new ttypes.EntityTermPetitionGradeCount();
-          elem374.read(input);
-          this.success.push(elem374);
+          var elem382 = null;
+          elem382 = new ttypes.EntityTermPetitionGradeCount();
+          elem382.read(input);
+          this.success.push(elem382);
         }
         input.readListEnd();
       } else {
@@ -3621,12 +3621,12 @@ ActionService_get_entity_term_petition_grade_counts_result.prototype.write = fun
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter375 in this.success)
+    for (var iter383 in this.success)
     {
-      if (this.success.hasOwnProperty(iter375))
+      if (this.success.hasOwnProperty(iter383))
       {
-        iter375 = this.success[iter375];
-        iter375.write(output);
+        iter383 = this.success[iter383];
+        iter383.write(output);
       }
     }
     output.writeListEnd();
@@ -3843,18 +3843,18 @@ ActionService_filter_terms_by_entity_actions_result.prototype.read = function(in
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size376 = 0;
-        var _rtmp3380;
+        var _size384 = 0;
+        var _rtmp3388;
         this.success = [];
-        var _etype379 = 0;
-        _rtmp3380 = input.readListBegin();
-        _etype379 = _rtmp3380.etype;
-        _size376 = _rtmp3380.size;
-        for (var _i381 = 0; _i381 < _size376; ++_i381)
+        var _etype387 = 0;
+        _rtmp3388 = input.readListBegin();
+        _etype387 = _rtmp3388.etype;
+        _size384 = _rtmp3388.size;
+        for (var _i389 = 0; _i389 < _size384; ++_i389)
         {
-          var elem382 = null;
-          elem382 = input.readString();
-          this.success.push(elem382);
+          var elem390 = null;
+          elem390 = input.readString();
+          this.success.push(elem390);
         }
         input.readListEnd();
       } else {
@@ -3883,12 +3883,12 @@ ActionService_filter_terms_by_entity_actions_result.prototype.write = function(o
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRING, this.success.length);
-    for (var iter383 in this.success)
+    for (var iter391 in this.success)
     {
-      if (this.success.hasOwnProperty(iter383))
+      if (this.success.hasOwnProperty(iter391))
       {
-        iter383 = this.success[iter383];
-        output.writeString(iter383);
+        iter391 = this.success[iter391];
+        output.writeString(iter391);
       }
     }
     output.writeListEnd();
