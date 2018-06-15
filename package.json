@@ -1,0 +1,11 @@
+{
+  "name": "thrift-shop",
+  "version": "0.0.2",
+  "description": "Thrift compiler-generated classes for thrift-shop.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "./index.d.ts",
+  "contributors": ["Josh Evans", "Nora Grossman"],
+  "license": "Proprietary"
+}
